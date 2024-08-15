@@ -18,6 +18,18 @@
         .button:hover {
             background-color: #c23600;
         }
+
+        .button2 {
+          padding: 1px 24px;
+          font-size: 15px;
+          color: rgb(0, 0, 0);
+          background-color: #ffffff;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          margin: 1px;
+      }
+      
         #videoModal {
             display: none;
             position: fixed;
@@ -110,26 +122,25 @@
   <div class="HeaderStore" style="padding-top: 27px; padding-bottom: 27px; padding-left: 576px; padding-right: 36px; left: 180px; top: 102px; position: absolute; justify-content: flex-end; align-items: flex-start; gap: 120px; display: inline-flex">
     <div class="Frame7" style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
       <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Latest</div>
+       <button class="button2" onclick="lates()">latest</button>
       </div>
       <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Collections</div>
+        <button class="button2" onclick="collections()">collection</button>
       </div>
       <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Deals</div>
+        <button class="button2" onclick="deals()">deals</button>
       </div>
       <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Subscriptions</div>
+        <button class="button2" onclick="subscribtion()">subscription</button>
       </div>
       <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Browse</div>
+        <button class="button2" onclick="browser()">browser</button>
       </div>
     </div>
-    <div class="Frame39" style="align-self: stretch; padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #F4F7FA; border-radius: 8px; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+    <div class="Frame39" style="align-self: stretch; padding-left: 12px; padding-right: 150px; padding-top: 8px; padding-bottom: 8px; background: #F4F7FA; border-radius: 8px; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
       <div class="InterfaceInterface5224px" style="width: 24px; height: 24px; padding: 2px; justify-content: center; align-items: center; display: flex">
-        <div class="Icon" style="width: 20px; height: 20px; transform: rotate(180deg); transform-origin: 0 0; background: #91969B"></div>
       </div>
-      <div class="Search" style="color: #91969B; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Search</div>
+      <button class="button2" onclick="search()">search</button>
     </div>
   </div>
   <div class="Frame98" style="height: 112px; padding-top: 12px; padding-bottom: 24.80px; padding-left: 12px; padding-right: 348.87px; left: 1356px; top: 1347px; position: absolute; background: #17293F; border-radius: 12px; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 20.80px; display: inline-flex">
@@ -230,10 +241,6 @@
 </div>
 
 <script>
-    function preOrder() {
-        alert("Thank you for your pre-order!");
-    }
-
     function watchVideo() {
         const videoModal = document.getElementById("videoModal");
         const videoPlayer = document.getElementById("videoPlayer");
