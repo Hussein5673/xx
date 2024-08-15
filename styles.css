@@ -1,14 +1,16 @@
-
-    body, html {
-      margin: 0;
-      padding: 0;
-      
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+/* Reset default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }  
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+ 
     .MenuButtons {
       position: absolute;
       left: 87px;
@@ -76,4 +78,43 @@
     background: transparent;
     flex-grow: 1; /* Allows the input to take up the remaining space */
 }
+/*   Sign in   */
+  
+.Signin {
+    width: 100%;
+    height: 1024px;
+    position: relative;
+    background-image: url('Signup&Signin icons_background/Signinbackground.png'); /* Path to your image */
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+  }
+  
 
+  
+  .OverlaySignIn {
+    width: 539px;
+    height: 730px;
+    position: absolute;
+    top: 147px;
+    left: 690px;
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+/*   Sign up   */
+
+.RightColumnSignup {
+    max-width: 50%;
+    flex: 1;
+    width: 50%;
+    height: 919px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    background-image: url('Signup&Signin icons_background/Home page.png'); /* Path to your image */
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    position: relative; /* Needed to position the overlay correctly */
+  }
