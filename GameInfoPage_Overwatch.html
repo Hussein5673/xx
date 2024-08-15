@@ -1,3 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Elements</title>
+    <style>
+        .button {
+            padding: 16px 24px;
+            font-size: 18px;
+            color: white;
+            background-color: #D63D00;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .button:hover {
+            background-color: #c23600;
+        }
+
+        .button2 {
+          padding: 1px 24px;
+          font-size: 15px;
+          color: rgb(0, 0, 0);
+          background-color: #ffffff;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          margin: 1px;
+      }
+      
+        #videoModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        #videoModalContent {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+        }
+        #closeButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+</style>
+</head>
+<body>
+
 <div class="HomePage" style="width: 1920px; height: 4853px; position: relative">
   <div class="UnsplashSihczyewmb0" style="width: 1641px; height: 4751px; left: 279px; top: 38px; position: absolute">
     <img class="UnsplashSihczyewmb0" style="width: 1641px; height: 4751px; left: 0px; top: 0px; position: absolute" src="gameInfoPics\background.png" />
@@ -36,14 +98,13 @@
   <div class="Frame70" style="width: 1365px; height: 963px; left: 414px; top: 364px; position: absolute; background: #17293F; border-radius: 20px; overflow: hidden">
     <img class="Image19" style="width: 1282px; height: 821px; left: 45px; top: 91px; position: absolute" src="gameInfoPics\e0285fc360f86cd80977c1e320872adc.png" />
     <img class="Union" style="width: 1228px; height: 164px; left: 73px; top: 718px; position: absolute; border-radius: 20px" src="https://via.placeholder.com/1228x164" />
-    <div class="Frame88" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 1053px; top: 783px; position: absolute; background: #D63D00; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-      <div class="PreOrder099" style="color: white; font-size: 28px; font-family: Abel; font-weight: 400; line-height: 28px; word-wrap: break-word">Pre-order € 0.99</div>
+    <div class="Frame88" style="padding-left: 2px; padding-right: 2px; padding-top: px; padding-bottom:px; left: 1053px; top: 783px; position: absolute; background: #D63D00; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <button class="button" onclick="preOrder()">Pre-order € 0.99</button>
     </div>
     <div class="Frame87" style="padding-left: 16px; padding-right: 16px; padding-top: 12px; padding-bottom: 12px; left: 72px; top: 108px; position: absolute; background: black; border-radius: 8px; justify-content: center; align-items: center; gap: 8px; display: inline-flex">
       <div class="ArrowsArrowLedft124px" style="width: 16px; height: 16px; padding-left: 1.33px; padding-right: 1.33px; padding-top: 4px; padding-bottom: 4px; justify-content: center; align-items: center; display: flex">
         <div class="Icon" style="width: 13.33px; height: 8px; transform: rotate(180deg); transform-origin: 0 0; background: white"></div>
       </div>
-      <div class="GoBack" style="color: white; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Go back</div>
     </div>
     <div class="Frame99" style="padding: 8px; left: 1261px; top: 114px; position: absolute; background: black; border-radius: 8px; border: 1px black solid; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
       <div class="Heart" style="width: 24px; height: 24px; position: relative">
@@ -61,26 +122,25 @@
   <div class="HeaderStore" style="padding-top: 27px; padding-bottom: 27px; padding-left: 576px; padding-right: 36px; left: 180px; top: 102px; position: absolute; justify-content: flex-end; align-items: flex-start; gap: 120px; display: inline-flex">
     <div class="Frame7" style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
       <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Latest</div>
+       <button class="button2" onclick="lates()">latest</button>
       </div>
       <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Collections</div>
+        <button class="button2" onclick="collections()">collection</button>
       </div>
       <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Deals</div>
+        <button class="button2" onclick="deals()">deals</button>
       </div>
       <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Subscriptions</div>
+        <button class="button2" onclick="subscribtion()">subscription</button>
       </div>
       <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Browse</div>
+        <button class="button2" onclick="browser()">browser</button>
       </div>
     </div>
-    <div class="Frame39" style="align-self: stretch; padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #F4F7FA; border-radius: 8px; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+    <div class="Frame39" style="align-self: stretch; padding-left: 12px; padding-right: 150px; padding-top: 8px; padding-bottom: 8px; background: #F4F7FA; border-radius: 8px; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
       <div class="InterfaceInterface5224px" style="width: 24px; height: 24px; padding: 2px; justify-content: center; align-items: center; display: flex">
-        <div class="Icon" style="width: 20px; height: 20px; transform: rotate(180deg); transform-origin: 0 0; background: #91969B"></div>
       </div>
-      <div class="Search" style="color: #91969B; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Search</div>
+      <button class="button2" onclick="search()">search</button>
     </div>
   </div>
   <div class="Frame98" style="height: 112px; padding-top: 12px; padding-bottom: 24.80px; padding-left: 12px; padding-right: 348.87px; left: 1356px; top: 1347px; position: absolute; background: #17293F; border-radius: 12px; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 20.80px; display: inline-flex">
@@ -118,8 +178,8 @@
   <div class="Editions" style="width: 100px; height: 40px; left: 438px; top: 1514px; position: absolute; color: white; font-size: 32px; font-family: Abel; font-weight: 400; line-height: 40px; word-wrap: break-word">Editions</div>
   <div class="LegendaryEdition" style="left: 503px; top: 1967px; position: absolute; color: white; font-size: 20px; font-family: Abel; font-weight: 400; line-height: 26px; word-wrap: break-word">Legendary Edition</div>
   <div class="Frame100" style="left: 503px; top: 2048px; position: absolute; justify-content: flex-start; align-items: flex-start; gap: 9px; display: inline-flex">
-    <div class="Frame88" style="padding-left: 16px; padding-right: 16px; padding-top: 12px; padding-bottom: 12px; background: #D63D00; border-radius: 8px; justify-content: center; align-items: center; gap: 10px; display: flex">
-      <div class="PreOrder099" style="color: white; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Pre-order € 0.99</div>
+    <div class="Frame88" style="padding-left: 10px; padding-right: 10px; padding-top:px; padding-bottom: px; background: #D63D00; border-radius: 8px; justify-content: center; align-items: center; gap: 10px; display: flex">
+      <button class="button" onclick="preOrder()">Pre-order € 0.99</button>
     </div>
     <div class="Frame99" style="padding: 8px; background: black; border-radius: 8px; border: 2px #302D2D solid; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
       <div class="Heart" style="width: 24px; height: 24px; position: relative">
@@ -130,12 +190,12 @@
   </div>
   <div class="Rectangle30" style="width: 1364px; height: 772px; left: 414px; top: 2142px; position: absolute; background: #17293F"></div>
   <img class="Image21" style="width: 1256px; height: 682px; left: 468px; top: 2187px; position: absolute" src="gameInfoPics/OVR_FlashpointGameplay_India_003.0.jpg" />
-  <div class="GameplayPreview" style="left: 496px; top: 2212px; position: absolute; color: #666666; font-size: 48px; font-family: Abel; font-weight: 400; line-height: 56px; word-wrap: break-word">Gameplay<br/>Preview</div>
-  <div class="Frame89" style="padding: 16px; left: 530px; top: 2770px; position: absolute; background: white; border-radius: 8px; justify-content: center; align-items: center; gap: 8px; display: inline-flex">
+  <div class="GameplayPreview" style="left: 496px; top: 2212px; position: absolute; color: #fcf8f8; font-size: 48px; font-family: Abel; font-weight: 400; line-height: 56px; word-wrap: break-word">Gameplay<br/>Preview</div>
+  <div class="Frame89" style="padding: 16px; left: 530px; top: 2770px; position: absolute; background: rgb(0, 0, 0); border-radius: 8px; justify-content: center; align-items: center; gap: 8px; display: inline-flex">
     <div class="MediaMedia124px" style="width: 24px; height: 24px; padding: 2px; justify-content: center; align-items: center; display: flex">
-      <div class="Icon" style="width: 20px; height: 20px; background: black"></div>
+      <div class="Icon" style="width: 20px; height: 20 px; background: black"></div>
     </div>
-    <div class="WatchVideo2715"><span style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Watch video  </span><span style="color: #91969B; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">27:15</span></div>
+    <button class="button" onclick="watchVideo()">Watch Video</button>
   </div>
   <div class="Rectangle31" style="width: 1364px; height: 1401px; left: 418px; top: 2971px; position: absolute; background: #17293F"></div>
   <div class="PreOrderInformation" style="width: 360px; left: 516px; top: 3799px; position: absolute; color: #E7ECF1; font-size: 48px; font-family: Abel; font-weight: 400; line-height: 56px; word-wrap: break-word">Pre-order information</div>
@@ -173,3 +233,27 @@
   </div>
   <div class="TheNewFantasyActionRpg" style="width: 360px; left: 516px; top: 3029px; position: absolute; color: #F4F7FA; font-size: 48px; font-family: Abel; font-weight: 400; line-height: 56px; word-wrap: break-word">The new fantasy action RPG</div>
 </div>
+  <div id="videoModal">
+    <div id="videoModalContent">
+        <iframe id="videoPlayer" width="100%" height="500px" src="" frameborder="0" allowfullscreen></iframe>
+        <button id="closeButton" onclick="closeVideo()">Close</button>
+    </div>
+</div>
+
+<script>
+    function watchVideo() {
+        const videoModal = document.getElementById("videoModal");
+        const videoPlayer = document.getElementById("videoPlayer");
+        videoPlayer.src = "https://www.youtube.com/watch?v=dushZybUYnM";
+        videoModal.style.display = "flex";
+    }
+
+    function closeVideo() {
+        const videoModal = document.getElementById("videoModal");
+        const videoPlayer = document.getElementById("videoPlayer");
+        videoPlayer.src = ""; 
+        videoModal.style.display = "none";
+    }
+</script>
+</body>
+</html>
