@@ -18,13 +18,13 @@ session_start(); // Start the session at the beginning
             <div class="Frame375" style="flex-direction: column; justify-content: center; align-items: flex-start; gap: 32px; display: flex">
               <div class="SignIn" style="text-align: center; color: #333333; font-size: 32px; font-family: Poppins; font-weight: 500; word-wrap: break-word">Sign in</div>
               <!-- Start of the form -->
-          <form action="signin.php" method="POST">
+          <form action="http://localhost/Group%20A/Signin.php" method="POST">
               <div class="Email" style="height: 87px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                 <div class="Frame243" style="width: 459px; padding-bottom: 3px; padding-right: 306px; justify-content: flex-start; align-items: center; display: inline-flex">
                   <div class="Label" style="color: #666666; font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Username or email </div>
                 </div>
-                <div class="TextField" id="username" style="width: 459px; height: 56px; position: relative; border-radius: 12px; overflow: hidden; border: 1px rgba(102, 102, 102, 0.35) solid">
-                  <input type="text" style="font-size:18px; width: 100%; height: 100%;">
+                <div class="TextField" style="width: 459px; height: 56px; position: relative; border-radius: 12px; overflow: hidden; border: 1px rgba(102, 102, 102, 0.35) solid">
+                  <input type="text" id="username" name="username" style="font-size:18px; width: 100%; height: 100%;">
                 </div>
               </div>
               <div class="Email" style="height: 87px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
@@ -41,7 +41,7 @@ session_start(); // Start the session at the beginning
                   </div>
                 </div>
                 <div class="TextField" style="width: 459px; height: 56px; position: relative; border-radius: 12px; overflow: hidden; border: 1px rgba(102, 102, 102, 0.35) solid">
-                  <input type="text" id="password" style="font-size:18px; width: 100%; height: 100%;">
+                  <input type="text" id="password" name="password" style="font-size:18px; width: 100%; height: 100%;">
                 </div>
               </div>
               <div class="Frame374" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
