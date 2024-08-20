@@ -193,6 +193,55 @@
     </style>
   </head>
   <body data-new-gr-c-s-check-loaded="14.1190.0" data-gr-ext-installed="">
+
+  <!-- Using PHP for backend here -->
+  <?php
+    // Defining a constant for the currency sign
+    define("CURRENCY", "€");
+
+// PHP code to connect to MySQL and fetch data
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "catalog_db";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// SQL query to select data
+$sql = "SELECT * FROM `game_title` WHERE ID IN (1, 2, 3, 4, 5, 6, 7)"; // The IDs for each game. 
+$result = $conn->query($sql);
+
+$games = []; // Initialize an empty array for the game names and prices.
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $games[$row['ID']] = [  // Use the ID as the key for the outer array
+        'title' => $row['Game_Title'],  // Store the title in the inner associative array
+        'price' => $row['price']   // Store the price in the inner associative array
+    ];
+       
+    }
+} else {
+    $games = [
+      1 => ['title' => "Title not found", 'price' => "N/A"],
+      2 => ['title' => "Title not found", 'price' => "N/A"],
+        3 => ['title' => "Title not found", 'price' => "N/A"],
+        4 => ['title' => "Title not found", 'price' => "N/A"],
+        5 => ['title' => "Title not found", 'price' => "N/A"],
+        6 => ['title' => "Title not found", 'price' => "N/A"]
+    ];
+}
+
+
+$conn->close();
+?>
+    
     <div
       style="
         width: 100%;
@@ -310,7 +359,7 @@
                         word-wrap: break-word;
                       "
                     >
-                      € 69.99
+                    <?php echo CURRENCY . " " . $games[1]['price']; ?>
                     </div>
                   </div>
                   <div
@@ -324,7 +373,7 @@
                       word-wrap: break-word;
                     "
                   >
-                    Elden Ring
+                  <?php echo $games[1]['title']; ?> 
                   </div>
                   <div
                     style="
@@ -438,7 +487,7 @@
                         word-wrap: break-word;
                       "
                     >
-                      € 69.99
+                    <?php echo CURRENCY . " " . $games[2]['price']; ?>
                     </div>
                   </div>
                   <div
@@ -452,7 +501,7 @@
                       word-wrap: break-word;
                     "
                   >
-                    Project Zero 20th Anniversary Celebration DLC
+                  <?php echo $games[2]['title']; ?> 
                   </div>
                   <div
                     style="
@@ -566,7 +615,7 @@
                         word-wrap: break-word;
                       "
                     >
-                      € 89.99
+                    <?php echo CURRENCY . " " . $games[3]['price']; ?>
                     </div>
                   </div>
                   <div
@@ -580,7 +629,7 @@
                       word-wrap: break-word;
                     "
                   >
-                    Tiny Tina's Wonderlands: Chaotic Great …
+                  <?php echo $games[3]['title']; ?> 
                   </div>
                   <div
                     style="
@@ -694,7 +743,7 @@
                         word-wrap: break-word;
                       "
                     >
-                      € 99.99
+                    <?php echo CURRENCY . " " . $games[4]['price']; ?>
                     </div>
                   </div>
                   <div
@@ -708,7 +757,7 @@
                       word-wrap: break-word;
                     "
                   >
-                    Riders Republic™ Gold Edition
+                  <?php echo $games[4]['title']; ?> 
                   </div>
                   <div
                     style="
@@ -845,7 +894,7 @@
                         word-wrap: break-word;
                       "
                     >
-                      Free
+                    <?php echo $games[5]['price']; ?>
                     </div>
                   </div>
                   <div
@@ -859,7 +908,7 @@
                       word-wrap: break-word;
                     "
                   >
-                    eFootball™ 2022
+                  <?php echo $games[5]['title']; ?> 
                   </div>
                   <div
                     style="
@@ -973,7 +1022,7 @@
                         word-wrap: break-word;
                       "
                     >
-                      € 69.99
+                    <?php echo CURRENCY . " " . $games[6]['price']; ?>
                     </div>
                   </div>
                   <div
@@ -987,7 +1036,7 @@
                       word-wrap: break-word;
                     "
                   >
-                    Saints Row
+                  <?php echo $games[6]['title']; ?>
                   </div>
                   <div
                     style="
@@ -1133,7 +1182,7 @@
                         word-wrap: break-word;
                       "
                     >
-                      € 79.99
+                    <?php echo CURRENCY . " " . $games[7]['price']; ?>
                     </div>
                   </div>
                   <div
@@ -1147,7 +1196,7 @@
                       word-wrap: break-word;
                     "
                   >
-                    Gran Turismo® 7
+                  <?php echo $games[7]['title']; ?> 
                   </div>
                   <div
                     style="
