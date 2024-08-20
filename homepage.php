@@ -19,8 +19,8 @@ if(isset($_SESSION['logged_in'])){$username = $_POST['username']; // To get the 
   <div class="Header" style="width: 100%; height: 80px; left: 8px; top: 8px; position: absolute">
     </div>
   </div>
-  <div class="Frame39">
-    <div class="InterfaceInterface5224px">
+  <div class="Searchbox">
+    <div class="Search">
         <div class="Icon">
             <img src="Icons/Icon.png" alt="Icon Image">
         </div>
