@@ -1,3 +1,9 @@
+<?php
+session_start(); // Start the session at the beginning
+if(isset($_SESSION['logged_in'])){$username = $_POST['username']; // To get the username
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +19,6 @@
   <div class="Header" style="width: 100%; height: 80px; left: 8px; top: 8px; position: absolute">
     </div>
   </div>
-  <!--HELLO TEST omran-->
-  <!--HELLO TEST 2-->
-  <!--HELLO TEST 3-->
   <div class="Frame39">
     <div class="InterfaceInterface5224px">
         <div class="Icon">
