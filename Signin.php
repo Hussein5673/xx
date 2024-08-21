@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username'], $_POST['pa
 
         $_SESSION['username'] = $row['UserName'];
         $_SESSION['logged_in'] = true;
-         header("Location: homepage.html");
+         header("Location: homepage.php");
          exit();
      } else {
          echo "Wrong Username or Password";
