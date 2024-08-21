@@ -17,7 +17,7 @@ steps:
     ls -R .
   displayName: 'List files in root directory'
 - script: |
-    npx htmlhint "src/**/*.html" --config .htmlhintrc
+    npx htmlhint "*.html" --config .htmlhintrc
   displayName: 'HTML syntax'
     
 - script: |
