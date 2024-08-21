@@ -18,6 +18,12 @@ steps:
     npm run build
   displayName: 'Compile HTML/CSS'
 
+# Debug step to check files before copying
+- script: |
+    echo "Listing files in $(Build.SourcesDirectory):"
+    ls -al $(Build.SourcesDirectory)
+  displayName: 'List files in source directory'
+
 - script: |
     cp -R $(Build.SourcesDirectory)/* $(Build.ArtifactStagingDirectory)/
   displayName: 'Copy all files to artifact staging directory'
