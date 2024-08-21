@@ -4,89 +4,200 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+  <title>Cart Page</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Righteous', sans-serif;
+      background-image: url('cart images/unsplash_SIhcZYEwMB0.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Header Styles */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: rgba(34, 18, 107, 0.8);
+      position: relative;
+      z-index: 1;
+    }
+
+    .header .logo img {
+      width: 50px;
+      height: auto;
+    }
+
+    .header .profile {
+      display: flex;
+      align-items: center;
+    }
+
+    .header .profile img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    /* Main Content Styles */
+    .main-content {
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cart-title {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background-color: rgba(34, 18, 107, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .product h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .remove-btn {
+      background-color: #0060D1;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .checkout {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .total {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .checkout-btn {
+      background-color: white;
+      color: #0060D1;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Navigation Styles */
+    .navigation {
+      display: flex;
+      justify-content: space-around;
+      background-color: rgba(34, 18, 107, 0.8);
+      padding: 20px;
+      margin-top: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-item {
+      font-size: 1.2rem;
+    }
+
+    .nav-item a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-item a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-<div class="Cartpage" style="width: 1920px; height: 2460px; position: relative; background: #0060D1; border: 8px black solid">
-  <div class="Header" style="width: 1424px; height: 80px; left: -1196px; top: 1376px; position: absolute">
-    <div class="Path1" style="width: 41.66px; height: 32px; left: 52px; top: 24px; position: absolute; background: white"></div>
-    <div class="ArrowsDoubleChevronDown124px" style="width: 24px; height: 24px; padding-left: 6px; padding-right: 6px; padding-top: 5px; padding-bottom: 5px; left: 700px; top: 70px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-      <div class="Icon" style="width: 14px; height: 12px; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+  <header class="header">
+    <div class="logo">
+      <img src="cart images/store-icon 1.png" alt="Store Logo">
     </div>
-    <div class="Profile" style="padding-top: 4px; padding-bottom: 4px; padding-left: 4px; padding-right: 12px; left: 1266px; top: 24px; position: absolute; background: #0060D1; border-radius: 45px; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
-      <img class="Rectangle17" style="width: 24px; height: 24px; border-radius: 16px" src="cart images\store-icon 1.png" />
-      <div class="Ss" style="text-align: right; color: white; font-size: 16px; font-family: Abhaya Libre ExtraBold; font-weight: 800; line-height: 16px; word-wrap: break-word">Prikkodko</div>
+    <div class="profile">
+      <img src="cart images/store-icon 1.png" alt="Profile Picture">
+      
     </div>
-  </div>
-  <img class="UnsplashSihczyewmb0" style="width: 1920px; height: 2500px; left: 0px; top: 0px; position: absolute" src="cart images\unsplash_SIhcZYEwMB0.png" />
-  <img class="StoreIcon1" style="width: 60px; height: 65px; left: 81px; top: 69px; position: absolute; border-radius: 28px" src="cart images\store-icon 1.png" />
-  <div class="Cart" style="width: 289px; height: 132px; left: 70px; top: 150px; position: absolute; color: white; font-size: 128px; font-family: Paytone One; font-weight: 400; line-height: 16px; word-wrap: break-word">cart</div>
-  <div class="Rectangle28" style="width: 1224px; height: 211px; left: 424px; top: 2089px; position: absolute; background: #22126B"></div>
-  <div class="Checkout" style="left: 852px; top: 2156px; position: absolute; color: black; font-size: 64px; font-family: Inter; font-weight: 400; word-wrap: break-word">CHECKOUT</div>
-  <img class="Image6" style="width: 283px; height: 359px; left: 188px; top: 504px; position: absolute" src="cart images/image 6.png" />
-  <div class="Horizon" style="left: 650px; top: 544px; position: absolute; color: white; font-size: 96px; font-family: Abhaya Libre ExtraBold; font-weight: 800; line-height: 16px; word-wrap: break-word">horizon</div>
-  <div class="Frame40" style="width: 291px; height: 81px; padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; left: 650px; top: 750px; position: absolute; background: #0060D1; border-radius: 8px; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
-    <div class="Remove" style="color: black; font-size: 64px; font-family: Abhaya Libre ExtraBold; font-weight: 800; line-height: 16px; word-wrap: break-word">remove</div>
-  </div>
-  <div class="Frame41" style="width: 291px; height: 81px; padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; left: 641px; top: 1318px; position: absolute; background: #0060D1; border-radius: 8px; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
-    <div class="Remove" style="color: black; font-size: 64px; font-family: Abhaya Libre ExtraBold; font-weight: 800; line-height: 16px; word-wrap: break-word">remove</div>
-  </div>
-  <div class="CallOfDuty" style="left: 650px; top: 1112px; position: absolute; color: white; font-size: 96px; font-family: Abhaya Libre ExtraBold; font-weight: 800; line-height: 16px; word-wrap: break-word">call of duty</div>
-  <div class="600" style="width: 212px; height: 41px; left: 1353px; top: 652px; position: absolute; color: white; font-size: 96px; font-family: Abhaya Libre ExtraBold; font-weight: 800; line-height: 16px; word-wrap: break-word">$600</div>
-  <div class="500" style="left: 1356px; top: 1230px; position: absolute; color: white; font-size: 96px; font-family: Abhaya Libre ExtraBold; font-weight: 800; line-height: 16px; word-wrap: break-word">$500</div>
-  <div class="Total" style="width: 280px; height: 66px; left: 482px; top: 1969px; position: absolute; color: white; font-size: 64px; font-family: Abhaya Libre ExtraBold; font-weight: 800; line-height: 16px; word-wrap: break-word">TOTAL</div>
-  <div class="1100" style="width: 243px; height: 5px; left: 1322px; top: 1969px; position: absolute; color: white; font-size: 96px; font-family: Abhaya Libre ExtraBold; font-weight: 800; line-height: 32px; word-wrap: break-word">$1100</div>
-  <div class="Frame39" style="width: 537px; padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; left: 924px; top: 237px; position: absolute; background: #F4F7FA; border-radius: 8px; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
-    <div class="InterfaceInterface5224px" style="width: 24px; height: 24px; padding: 2px; justify-content: center; align-items: center; display: flex">
-      <div class="Icon" style="width: 20px; height: 20px; transform: rotate(180deg); transform-origin: 0 0; background: #91969B"></div>
-    </div>
-    <input 
-    type="text" 
-    class="Search" 
-    placeholder="Search" 
-    style="color: #91969B; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word; padding: 10px; border: 1px solid #91969B; border-radius: 4px; width: 200px;">
-
-  <img class="Image7" style="width: 283px; height: 337px; left: 188px; top: 1062px; position: absolute" src="cart images/image 7.png" />
-  <div class="MenuButtons" style="height: 318px; left: 141px; top: 1969px; position: absolute">
-    <div class="Menu" style="width: 100px; height: 42px; padding: 12px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
-      <div class="Menu" style="text-align: center; color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Latest</div>
-    </div>
-    <div class="Menu" style="width: 100px; height: 40px; padding: 12px; left: 0px; top: 71px; position: absolute; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
-      <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Collections</div>
-    </div>
-    <div class="Menu" style="width: 100px; height: 40px; padding: 12px; left: 0px; top: 140px; position: absolute; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
-      <div class="Menu" style="text-align: center; color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Deals</div>
-    </div>
-    <div class="Menu" style="width: 100px; height: 40px; padding: 12px; left: 0px; top: 209px; position: absolute; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
-      <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Subscriptions</div>
-    </div>
-    <div class="Menu" style="width: 100px; height: 40px; padding: 12px; left: 0px; top: 278px; position: absolute; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
-      <div class="Menu" style="text-align: center; color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Browse</div>
-    </div>
-  </div>
-</div>
-<nav>
-  <a href="homepage.html"><div class="GameVault" style="width: 348px; height: 70px; left: 56px; top: 14px; position: absolute; text-align: center; color: white; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; word-wrap: break-word">Game Vault</div></a>
-</div>  
-<div class="MenuButtons">
-  <div class="Menu">
-      <a href="Catalog_page.html"><div class="MenuItem">Catalogue</div></a>
-  </div>
-  <div class="Menu">
-      <a href="SignIn.html"><div class="MenuItem">Signin</div></a>
-  </div>
-  <div class="Menu">
-      <a href="SignUp.html"><div class="MenuItem">Signup</div></a>
-  </div>
-  <div class="Menu">
-      <a href="friendspage.html"><div class="MenuItem">Friends</div></a>
-  </div>
-  <div class="Menu">
-      <a href="subscription.html"><div class="MenuItem">Subscriptions</div></a>
-  </div>
-</div>
-
-</nav>
-<!--Grace Test-->
+  </header>
+  
+  <main class="main-content">
+    <h1 class="cart-title">Cart</h1>
+    
+    <section class="products">
+      <div class="product">
+        <img src="cart images/image 6.png" alt="Product 1">
+        <h2>Horizon</h2>
+        <div class="price">$600</div>
+        <button class="remove-btn">Remove</button>
+      </div>
+      <div class="product">
+        <img src="cart images/image 7.png" alt="Product 2">
+        <h2>Call of Duty</h2>
+        <div class="price">$500</div>
+        <button class="remove-btn">Remove</button>
+      </div>
+    </section>
+    
+    <section class="checkout">
+      <div class="total">
+        <span>TOTAL</span>
+        <span>$1100</span>
+      </div>
+      <button class="checkout-btn">CHECKOUT</button>
+    </section>
+  </main>
+  
+  <nav class="navigation">
+    <div class="nav-item"><a href="homepage.html">Home</a></div>
+    <div class="nav-item"><a href="Catalog_page.html">Catalogue</a></div>
+    <div class="nav-item"><a href="SignIn.html">Signin</a></div>
+    <div class="nav-item"><a href="SignUp.html">Signup</a></div>
+    <div class="nav-item"><a href="friendspage.html">Friends</a></div>
+    <div class="nav-item"><a href="subscription.html">Subscriptions</a></div>
+  </nav>
+</body>
+</html>
