@@ -25,7 +25,7 @@ steps:
   displayName: 'PHP syntax check'
 
 - script: |
-    npx stylelint "**/*.css"
+    npx stylelint "*.css"
   displayName: 'CSS syntax check'
     
 - script: |
