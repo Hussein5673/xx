@@ -18,7 +18,15 @@ steps:
   displayName: 'List files in root directory'
 - script: |
     npx htmlhint "*.html" --config .htmlhintrc
-  displayName: 'HTML syntax'
+  displayName: 'HTML syntax check'
+
+- script: |
+    find . -name "*.php" -exec php -l {} \;
+  displayName: 'PHP syntax check'
+
+- script: |
+    npx stylelint "**/*.css"
+  displayName: 'CSS syntax check'
     
 - script: |
     mkdir -p $(Build.ArtifactStagingDirectory)
