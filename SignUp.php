@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dob = $conn->real_escape_string($_POST['dob']);
 
     // Prepare an SQL statement to insert the data into the table
-    $sql = "INSERT INTO users (Name, Email, UserName, Password, DateOfBirth) VALUES ('$name', '$email', '$username', '$password', '$dob')";
+    $sql = "INSERT INTO user (Name, Email, UserName, Password, DateOfBirth) VALUES ('$name', '$email', '$username', '$password', '$dob')";
 
     // Execute the query and check if it was successful
     if ($conn->query($sql) === TRUE) {
