@@ -11,32 +11,34 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    # Install npm dependencies (including PostCSS, stylelint, and HTMLHint)
     npm install
+  displayName: 'Install npm dependencies'
+- script: |
+    ls -R .
+  displayName: 'List files in root directory'
+- script: |
+    npx htmlhint "*.html" --config .htmlhintrc
+  displayName: 'HTML syntax check'
 
-    # Check HTML syntax using HTMLHint
-    npx htmlhint "src/**/*.html" --config .htmlhintrc
+- script: |
+    find . -name "*.php" -exec php -l {} \;
+  displayName: 'PHP syntax check'
 
-    # Check CSS syntax using Stylelint
-    npx stylelint "src/**/*.css"
-
-    # Check PHP syntax using PHP linter
-    find src/ -name "*.php" -exec php -l {} \;
-
-    # If all checks pass, compile CSS using PostCSS
-    npx postcss src/*.css -o dist/styles.css
-
-    # Copy all files (HTML, PHP) and the compiled CSS to the artifact staging directory
+- script: |
+    npx stylelint "**/*.css"
+  displayName: 'CSS syntax check'
+    
+- script: |
     mkdir -p $(Build.ArtifactStagingDirectory)
     cp -R src/* $(Build.ArtifactStagingDirectory)/
 
-    # Copy the compiled CSS to the artifact staging directory
+    
     cp dist/styles.css $(Build.ArtifactStagingDirectory)/styles.css
 
-    # Navigate to the artifact staging directory
+    
     cd $(Build.ArtifactStagingDirectory)
 
-    # Create a ZIP file containing all the files
+    
     zip -r output.zip .
   displayName: 'Lint, Compile, and Package Files'
 
