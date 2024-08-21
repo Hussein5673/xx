@@ -22,24 +22,3 @@ steps:
     find . -name "*.php" -exec php -l {} \;
   displayName: 'PHP syntax check'
   
-    
-- script: |
-    mkdir -p $(Build.ArtifactStagingDirectory)
-    cp -R src/* $(Build.ArtifactStagingDirectory)/
-
-    
-    cp dist/styles.css $(Build.ArtifactStagingDirectory)/styles.css
-
-    
-    cd $(Build.ArtifactStagingDirectory)
-
-    
-    zip -r output.zip .
-  displayName: 'Lint, Compile, and Package Files'
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/output.zip'
-    artifactName: 'html-php-css-package'
-    publishLocation: 'pipeline'
-  displayName: 'Publish ZIP as Pipeline Artifact'
