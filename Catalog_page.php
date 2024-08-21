@@ -3716,7 +3716,7 @@ $conn->close();
                   display: flex;
                 "
               >
-                <a href="profile_page.html" style="text-decoration: none">
+                <a href="profile_page.php" style="text-decoration: none">
                   <div
                     style="
                       color: #91969b;
@@ -3742,7 +3742,7 @@ $conn->close();
                   display: flex;
                 "
               >
-              <a href="homepage.html" style="text-decoration: none">
+              <a href="homepage.php" style="text-decoration: none">
                 <div
                   style="
                     color: #91969b;
@@ -3885,13 +3885,13 @@ $conn->close();
                 display: inline-flex;
               "
             >
-            <a href="SignIn.html" style="text-decoration: none;">
+            <a href="Sign_in_html.php" style="text-decoration: none;">
               <img
                 style="width: 43px; height: 41px; border-radius: 50%"
                 src="Catalog_images/Rectangle 17.png"
               />
             </a>
-            <a href="profile_page.html" style="text-decoration: none;">
+            <a href="profile_page.php" style="text-decoration: none;">
               <div
                 style="
                   width: 80px;
