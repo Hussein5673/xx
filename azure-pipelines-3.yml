@@ -28,8 +28,9 @@ steps:
   displayName: 'PHP syntax check'
   
 - script: |
-    ./node_modules/.bin/stylelint "*.css" || echo "Stylelint found issues."
+    npx stylelint "*.css" --config .stylelintrc
   displayName: 'CSS syntax check'
+
     
 - script: |
     mkdir -p $(Build.ArtifactStagingDirectory)
