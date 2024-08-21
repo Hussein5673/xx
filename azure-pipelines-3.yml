@@ -11,21 +11,19 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-   
     npm install
-
-
+  displayName: 'Install npm dependencies'
+- script: |
     npx htmlhint "src/**/*.html" --config .htmlhintrc
-
-   
+  displayName: 'HTML syntax'
+- script: |  
     npx stylelint "src/**/*.css"
-
-   
-
-    
+  displayName: 'Css syntax'
+- script: |
     npx postcss src/*.css -o dist/styles.css
-
+  displayName: 'Css postcss plugin'
     
+- script: |
     mkdir -p $(Build.ArtifactStagingDirectory)
     cp -R src/* $(Build.ArtifactStagingDirectory)/
 
