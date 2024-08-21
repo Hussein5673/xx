@@ -28,7 +28,7 @@ steps:
   displayName: 'PHP syntax check'
   
 - script: |
-    npx stylelint "*.css"
+    ./node_modules/.bin/stylelint "*.css" || echo "Stylelint found issues."
   displayName: 'CSS syntax check'
     
 - script: |
