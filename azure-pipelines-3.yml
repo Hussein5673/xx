@@ -14,8 +14,8 @@ steps:
     npm install
   displayName: 'Install npm dependencies'
 - script: |
-    ls -R src/
-  displayName: 'List files in src directory'
+    ls -R .
+  displayName: 'List files in root directory'
 - script: |
     npx htmlhint "src/**/*.html" --config .htmlhintrc
   displayName: 'HTML syntax'
