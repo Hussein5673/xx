@@ -23,8 +23,9 @@ steps:
 - script: |
     find . -name "*.php" -exec php -l {} \;
   displayName: 'PHP syntax check'
-
+  
 - script: |
+    npm cache clean --force
     npx stylelint "*.css"
   displayName: 'CSS syntax check'
     
