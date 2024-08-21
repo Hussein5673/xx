@@ -13,10 +13,13 @@ steps:
 - script: |
     npm install
   displayName: 'Install npm dependencies'
-
 - script: |
-    ls -R .
-  displayName: 'List files in root directory'
+    npm install -g css-validator
+  displayName: 'Download css-validator'
+- script: |
+    css-validator "*.css"
+  displayName: 'CSS syntax check'
+
 - script: |
     npx htmlhint "*.html" --config .htmlhintrc
   displayName: 'HTML syntax check'
