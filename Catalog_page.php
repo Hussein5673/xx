@@ -211,10 +211,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-}
+} 
 
 // SQL query to select data
-$sql = "SELECT * FROM `game_title` WHERE ID IN (1, 2, 3, 4, 5, 6, 7)"; // The IDs for each game. 
+$sql = "SELECT * FROM `game_title`"; // The IDs for each game in the database. 
 $result = $conn->query($sql);
 
 $games = []; // Initialize an empty array for the game names and prices.
@@ -223,21 +223,14 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
       $games[$row['ID']] = [  // Use the ID as the key for the outer array
         'title' => $row['Game_Title'],  // Store the title in the inner associative array
+        'image_path' => $row['image_path'], // Store the image path in the inner associative array
         'price' => $row['price']   // Store the price in the inner associative array
     ];
        
     }
 } else {
-    $games = [
-      1 => ['title' => "Title not found", 'price' => "N/A"],
-      2 => ['title' => "Title not found", 'price' => "N/A"],
-        3 => ['title' => "Title not found", 'price' => "N/A"],
-        4 => ['title' => "Title not found", 'price' => "N/A"],
-        5 => ['title' => "Title not found", 'price' => "N/A"],
-        6 => ['title' => "Title not found", 'price' => "N/A"]
-    ];
+  echo "No games found.";
 }
-
 
 $conn->close();
 ?>
@@ -327,7 +320,7 @@ $conn->close();
                 >
                   <img
                     style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6.png"
+                    src="<?php echo $games[1]['image_path']; ?>"
                   />
                 </div>
                 <div
@@ -455,7 +448,7 @@ $conn->close();
                 >
                   <img
                     style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (1).png"
+                    src="<?php echo $games[2]['image_path']; ?>"
                   />
                 </div>
                 <div
@@ -583,7 +576,7 @@ $conn->close();
                 >
                   <img
                     style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (2).png"
+                    src="<?php echo $games[3]['image_path']; ?>"
                   />
                 </div>
                 <div
@@ -711,7 +704,7 @@ $conn->close();
                 >
                   <img
                     style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (3).png"
+                    src="<?php echo $games[4]['image_path']; ?>"
                   />
                 </div>
                 <div
@@ -862,7 +855,7 @@ $conn->close();
                 >
                   <img
                     style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (4).png"
+                    src="<?php echo $games[5]['image_path']; ?>"
                   />
                 </div>
                 <div
@@ -990,7 +983,7 @@ $conn->close();
                 >
                   <img
                     style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (5).png"
+                    src="<?php echo $games[6]['image_path']; ?>"
                   />
                 </div>
                 <div
@@ -1150,7 +1143,7 @@ $conn->close();
                 >
                   <img
                     style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (6).png"
+                    src="<?php echo $games[7]['image_path']; ?>"
                   />
                 </div>
                 <div
@@ -1278,7 +1271,7 @@ $conn->close();
                 >
                   <img
                     style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (7).png"
+                    src="<?php echo $games[8]['image_path']; ?>"
                   />
                 </div>
                 <div
@@ -1310,7 +1303,7 @@ $conn->close();
                         word-wrap: break-word;
                       "
                     >
-                      € 49.99
+                    <?php echo CURRENCY . " " . $games[8]['price']; ?>
                     </div>
                     <div
                       style="
@@ -1353,7 +1346,7 @@ $conn->close();
                       word-wrap: break-word;
                     "
                   >
-                    Sifu
+                  <?php echo $games[8]['title']; ?> 
                   </div>
                   <div
                     style="
@@ -1435,7 +1428,7 @@ $conn->close();
                 >
                   <img
                     style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (8).png"
+                    src="<?php echo $games[9]['image_path']; ?>"
                   />
                 </div>
                 <div
@@ -1467,7 +1460,7 @@ $conn->close();
                         word-wrap: break-word;
                       "
                     >
-                      € 89.99
+                    <?php echo CURRENCY . " " . $games[9]['price']; ?>
                     </div>
                   </div>
                   <div
@@ -1481,7 +1474,7 @@ $conn->close();
                       word-wrap: break-word;
                     "
                   >
-                    Horizon Forbidden West™ Digital Deluxe Edition
+                  <?php echo $games[9]['title']; ?>
                   </div>
                   <div
                     style="
@@ -3830,6 +3823,7 @@ $conn->close();
                   justify-content: center;
                   align-items: center;
                   display: flex;
+                  
                 "
               >
                 <div
@@ -3839,6 +3833,7 @@ $conn->close();
                     transform: rotate(180deg);
                     transform-origin: 0 0;
                     background: #91969b;
+                    
                   "
                 ></div>
               </div>
