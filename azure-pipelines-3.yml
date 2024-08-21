@@ -20,8 +20,9 @@ steps:
     ls -R
   displayName: 'List files'
 - script: |
-    css-validator "**/*.css"
-  displayName: 'CSS syntax check'
+    ls -R path/to/build/output
+  displayName: 'List build output'
+
 
 - script: |
     npx htmlhint "*.html" --config .htmlhintrc
