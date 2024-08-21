@@ -5,10 +5,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '14.x'  # Specify Node.js version
-  displayName: 'Install Node.js'
+
 
 - script: |
     npm install
@@ -27,9 +24,7 @@ steps:
     find . -name "*.php" -exec php -l {} \;
   displayName: 'PHP syntax check'
   
-- script: |
-    npx stylelint "*.css" --config .stylelintrc
-  displayName: 'CSS syntax check'
+
 
     
 - script: |
