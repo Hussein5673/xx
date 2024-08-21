@@ -11,30 +11,24 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    # Install npm dependencies
     npm install
-  displayName: 'Install npm dependencies'
 
-- script: |
+    # Compile HTML/CSS (assuming you have a build script defined)
     npm run build
-  displayName: 'Compile HTML/CSS'
 
-# Debug step to check files before copying
-- script: |
-    echo "Listing files in $(Build.SourcesDirectory):"
-    ls -al $(Build.SourcesDirectory)
-  displayName: 'List files in source directory'
+    # Create the artifact staging directory
+    mkdir -p $(Build.ArtifactStagingDirectory)
 
-- script: |
-    cp -R $(Build.SourcesDirectory)/* $(Build.ArtifactStagingDirectory)/
-  displayName: 'Copy all files to artifact staging directory'
+    # Copy all files (HTML, PHP, CSS) to the artifact staging directory
+    cp -R * $(Build.ArtifactStagingDirectory)/
 
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'  # Directory containing your built files
-    includeRootFolder: false
-    archiveFile: '$(Build.ArtifactStagingDirectory)/output.zip'  # Name of the ZIP file
-    verbose: true
-  displayName: 'Create ZIP Package'
+    # Navigate to the artifact staging directory
+    cd $(Build.ArtifactStagingDirectory)
+
+    # Create a ZIP file containing all the files
+    zip -r output.zip .
+  displayName: 'Install, Build, and Package Files'
 
 - task: PublishPipelineArtifact@1
   inputs:
