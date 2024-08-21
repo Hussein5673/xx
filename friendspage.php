@@ -2,6 +2,11 @@
 include 'username_database_password_server.php';
 
 $sql = "SELECT Name FROM user WHERE Id = 1"; // Assuming you want to show friends of user with Id 1
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 $result = $conn->query($sql);
 
 $friendsList = [];
