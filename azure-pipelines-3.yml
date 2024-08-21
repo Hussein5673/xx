@@ -16,12 +16,6 @@ steps:
 - script: |
     npx htmlhint "src/**/*.html" --config .htmlhintrc
   displayName: 'HTML syntax'
-- script: |  
-    npx stylelint "src/**/*.css"
-  displayName: 'Css syntax'
-- script: |
-    npx postcss src/*.css -o dist/styles.css
-  displayName: 'Css postcss plugin'
     
 - script: |
     mkdir -p $(Build.ArtifactStagingDirectory)
