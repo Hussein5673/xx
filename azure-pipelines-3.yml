@@ -1,0 +1,38 @@
+trigger:
+- Development
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.x'  # Specify Node.js version
+  displayName: 'Install Node.js'
+
+- script: |
+    # Install npm dependencies
+    npm install
+
+    # Compile HTML/CSS (assuming you have a build script defined)
+    npm run build
+
+    # Create the artifact staging directory
+    mkdir -p $(Build.ArtifactStagingDirectory)
+
+    # Copy all files (HTML, PHP, CSS) to the artifact staging directory
+    cp -R * $(Build.ArtifactStagingDirectory)/
+
+    # Navigate to the artifact staging directory
+    cd $(Build.ArtifactStagingDirectory)
+
+    # Create a ZIP file containing all the files
+    zip -r output.zip .
+  displayName: 'Install, Build, and Package Files'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/output.zip'
+    artifactName: 'html-php-css-package'
+    publishLocation: 'pipeline'
+  displayName: 'Publish ZIP as Pipeline Artifact'
