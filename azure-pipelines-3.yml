@@ -11,18 +11,8 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
-  displayName: 'Install npm dependencies'
-- script: |
-    npm install -g css-validator
-  displayName: 'Download css-validator'
-- script: |
     ls -R
   displayName: 'List files'
-- script: |
-    ls -R path/to/build/output
-  displayName: 'List build output'
-
 
 - script: |
     npx htmlhint "*.html" --config .htmlhintrc
