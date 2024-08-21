@@ -17,6 +17,9 @@ steps:
     npm install -g css-validator
   displayName: 'Download css-validator'
 - script: |
+    ls -R
+  displayName: 'List files'
+- script: |
     css-validator "**/*.css"
   displayName: 'CSS syntax check'
 
