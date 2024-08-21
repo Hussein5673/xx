@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the query and check if it was successful
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        header("Location: homepage.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
