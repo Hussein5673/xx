@@ -59,5 +59,3 @@ session_start(); // Start the session at the beginning
 </body>
 </html>
 <!--Commit test-->
-<asldjf;alskjfd;lk>jals;djflkajs;df?kfja;<assldkj/l/djf>
--->
