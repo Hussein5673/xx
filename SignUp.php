@@ -1,6 +1,6 @@
 <?php
 // Database configuration
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root"; // Replace with your MySQL username
 $password = ""; // Replace with your MySQL password
 $dbname = "user_base"; // Replace with your actual database name
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the query and check if it was successful
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        header("Location: homepage.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
