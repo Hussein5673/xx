@@ -32,18 +32,27 @@ USE `user_base`;
 CREATE TABLE `game_title` (
   `ID` int(11) NOT NULL,
   `Game_Title` text NOT NULL,
-  `Release_Year` int(11) NOT NULL,
-  `Publisher` text NOT NULL
+  `price` varchar(100) NOT NULL,
+  `console` varchar(100) NOT NULL,
+  `type` text NOT NULL,
+  `image_path` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `game_title`
 --
 
-INSERT INTO `game_title` (`ID`, `Game_Title`, `Release_Year`, `Publisher`) VALUES
-(2, 'GTA V', 2013, 'Rockstar Games'),
-(3, 'Elden Ring', 2022, 'FromSoftware');
 
+INSERT INTO `game_title` (`ID`, `Game_Title`, `price`, `console`, `type`, `image_path`) VALUES
+(1, 'ELDEN RING', '69.99', 'PS5', 'PRE-ORDER', 'Catalog_images/image 6.png'),
+(2, 'Project Zero 20th Anniversary Celebration DLC', '69.99', 'PS5', 'GAME BUNDLE', 'Catalog_images/image 6 (1).png'),
+(3, "Tiny Tina\'s Wonderlands: Chaotic Edition", '89.99', 'PS5', 'PRE-ORDER', 'Catalog_images/image 6 (2).png'),
+(4, 'Riders Republic™ Gold Edition', '99.99', 'PS5 | PS4', 'GAME BUNDLE', 'Catalog_images/image 6 (3).png'),
+(5, 'eFootball™ 2022', 'FREE', 'PS5 | PS4', '', 'Catalog_images/image 6 (4).png'),
+(6, 'Saints Row', '69.99', 'PS5 | PS4', 'PRE-ORDER', 'Catalog_images/image 6 (5).png'),
+(7, 'Gran Turismo® 7', '79.99', 'PS5', 'PRE-ORDER', 'Catalog_images/image 6 (6).png'),
+(8, 'Sifu ', '49.99', 'PS5', 'PRE-ORDER', 'Catalog_images/image 6 (7).png'),
+(9, 'Horizon Forbidden West™ Digital Deluxe Edition', '89.99', 'PS5 | PS4', 'PRE-ORDER', 'Catalog_images/image 6 (8).png');
 -- --------------------------------------------------------
 
 --
@@ -106,7 +115,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `game_title`
 --
 ALTER TABLE `game_title`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user`

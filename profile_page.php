@@ -1,5 +1,45 @@
 <?php
+
 session_start(); // Start the session at the beginning
+if(isset($_SESSION['logged_in'])) {
+  $username = $_SESSION['username']; // Fetch username from session
+} 
+// Database connection details
+$servername = "localhost";
+$username = "root"; // Replace with your database username
+$password = ""; // Replace with your database password
+$dbname = "user_base";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Optional: Set the character set to handle utf8mb4 data properly
+$conn->set_charset("utf8mb4");
+
+// Fetch user information securely using prepared statements
+$user_id = 1; // Example: Fetch user with ID 1
+$sql = "SELECT * FROM user WHERE Id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    // Output data of each row
+    while($row = $result->fetch_assoc()) {
+        $user_name = $row["Name"];
+        $user_email = $row["Email"];
+        $user_username = $row["UserName"];
+        // You can use these variables in your HTML below
+    }
+} else {
+    echo "0 results";
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +64,9 @@ session_start(); // Start the session at the beginning
   <div class="Frame98" style="height: 112px; padding-top: 8px; padding-left: 16px; padding-right: 342px; left: 1438px; top: 891px; position: absolute; background: #07041D; border-radius: 12px; overflow: hidden; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 12px; display: inline-flex">
     <img class="Meeting" style="width: 65px; height: 48px" src="picturespfp/Meeting.png" />
     <div class="Players" style="color: white; font-size: 25px; font-family: Pavanam; font-weight: 400; line-height: 22px; word-wrap: break-word">players<br/></div>
+<div class="Username" style="left: 395px; top: 305px; position: absolute; color: white; font-size: 48px; font-family: Pavanam; font-weight: 400; line-height: 56px; word-wrap: break-word">
+    <?php echo htmlspecialchars($user_username); ?>
+</div>
   </div>
   <div class="Frame93" style="width: 429px; height: 112px; left: 984px; top: 891px; position: absolute; background: #07041D; border-radius: 12px; overflow: hidden">
     <div class="PremiumRequiredForOnlinePlay" style="left: 16px; top: 74px; position: absolute; color: white; font-size: 25px; font-family: Pavanam; font-weight: 400; line-height: 22px; word-wrap: break-word">premium required for online play</div>
@@ -39,20 +82,41 @@ session_start(); // Start the session at the beginning
     </div>
   </div>
   <img class="Customer" style="width: 100px; height: 100px; left: 253px; top: 280px; position: absolute" src="picturespfp/Customer.png" />
-  <div class="Frame88" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 12px; top: 391px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-    <div class="SignIn" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">user profile</div>  <a href="SignIn.html"><div class="MenuItem">Signin</div></a>
-  </div>
-  <div class="Frame98" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 17px; top: 468px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-    <div class="Catalogue" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Game</div> <a href="Catalog_page.html"><div class="MenuItem">Catalogue</div></a>
-  </div>
-  <div class="Frame99" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 17px; top: 545px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-    <div class="subscription" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Control</div>  <a href="subscription.html"><div class="MenuItem">Subscriptions</div></a>
-  </div>
-  <div class="Frame100" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 13px; top: 622px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-    <div class="Friends" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Contact</div> <a href="friendspage.html"><div class="MenuItem">Friends</div></a>
-  </div>
-  <div class="Frame101" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 13px; top: 699px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-    <div class="Settings" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Setup</div>   <a href="SignUp.html"><div class="MenuItem">Signup</div></a>
+  <div class="Frame88" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 12px; top: 90px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+  <!-- Signin Button -->
+  <div class="Frame88" style="padding-left: 24px; padding-right: 24px; padding-top: 10px; padding-bottom: 16px; left: 12px; top: 390px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <a href="SignIn.html" style="text-decoration: none;">
+        <div class="MenuItem" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Signin</div>
+      </a>
+    </div>
+    
+    <!-- Catalogue Button -->
+    <div class="Frame98" style="padding-left: 24px; padding-right: 24px; padding-top: 10px; padding-bottom: 16px; left: 17px; top: 440px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <a href="Catalog_page.html" style="text-decoration: none;">
+        <div class="Catalogue" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Catalogue</div>
+      </a>
+    </div>
+    
+    <!-- Subscriptions Button -->
+    <div class="Frame99" style="padding-left: 24px; padding-right: 24px; padding-top: 10px; padding-bottom: 16px; left: 17px; top: 490px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <a href="subscription.html" style="text-decoration: none;">
+        <div class="MenuItem" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Subscriptions</div>
+      </a>
+    </div>
+    
+    <!-- Friends Button -->
+    <div class="Frame100" style="padding-left: 24px; padding-right: 24px; padding-top: 10px; padding-bottom: 16px; left: 13px; top: 540px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <a href="friendspage.html" style="text-decoration: none;">
+        <div class="MenuItem" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Friends</div>
+      </a>
+    </div>
+    
+    <!-- Signup Button -->
+    <div class="Frame101" style="padding-left: 24px; padding-right: 24px; padding-top: 10px; padding-bottom: 16px; left: 13px; top: 590px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <a href="SignUp.html" style="text-decoration: none;">
+        <div class="MenuItem" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Signup</div>
+      </a>
+    </div>
   </div>
   <div class="Frame100" style="width: 49px; height: 38px; left: 606px; top: 319px; position: absolute; background: black; justify-content: center; align-items: center; display: inline-flex">
     <img class="MembershipCard" style="width: 75px; height: 38px" src="picturespfp/Membership Card.png" />
@@ -123,3 +187,6 @@ session_start(); // Start the session at the beginning
 </nav>
 </body>
 </html>
+<?php
+$conn->close();
+?>
