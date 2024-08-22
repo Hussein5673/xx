@@ -1,17 +1,18 @@
 trigger:
 - Development
 
-pool:
-  vmImage: 'ubuntu-latest'
 
 steps:
-# 1. Install Node.js (required for HTMLHint and Stylelint)
+# 1. Install Node.js
 - task: NodeTool@0
   inputs:
-    versionSpec: '21.x' # or '16.x'
+    versionSpec: '18.x'
   displayName: 'Install Node.js'
 
-
+# 2. Install project dependencies
+- script: |
+    npm ci  # Clean install
+  displayName: 'Install Dependencies'
 
 # 3. List files in the working directory (for debugging)
 - script: |
@@ -23,9 +24,9 @@ steps:
     npx htmlhint "**/*.html" --config .htmlhintrc
   displayName: 'HTML syntax check'
 
-# 5. CSS syntax check (if no configuration file is used, default linting rules will apply)
+# 5. CSS syntax check using Stylelint with inline configuration
 - script: |
-    npx stylelint "**/*.css" --fix
+    npx stylelint "**/*.css" --config '{ "extends": "stylelint-config-standard", "rules": { "color-no-invalid-hex": true } }'
   displayName: 'CSS syntax check'
 
 # 6. PHP syntax check using PHP linter
