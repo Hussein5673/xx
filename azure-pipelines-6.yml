@@ -21,8 +21,13 @@ steps:
 
 # 5. CSS syntax check using Stylelint with inline configuration
 - script: |
-    export STYLELINT_CONFIG='{"rules": {"block-no-empty": true, "color-no-invalid-hex": true}}'
-    npx stylelint "**/*.css" --stdin --stdin-filename "style.css" <<< "$STYLELINT_CONFIG"
+    echo '{
+      "rules": {
+        "block-no-empty": true,
+        "color-no-invalid-hex": true
+      }
+    }' > .stylelintrc.json
+    npx stylelint "**/*.css"
   displayName: 'CSS Syntax Check'
 
 # 6. PHP syntax check using PHP linter
