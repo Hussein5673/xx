@@ -8,7 +8,7 @@ steps:
 # 1. Install Node.js (required for HTMLHint and Stylelint)
 - task: NodeTool@0
   inputs:
-    versionSpec: '18.x' # or '16.x'
+    versionSpec: '16.x' # or '16.x'
   displayName: 'Install Node.js'
 
 
