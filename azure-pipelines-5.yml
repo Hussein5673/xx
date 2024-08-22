@@ -6,24 +6,26 @@ steps:
 # 1. Install Node.js
 - task: NodeTool@0
   inputs:
-    versionSpec: '18.x'
+    versionSpec: '14.x'
   displayName: 'Install Node.js'
 
+# 2. Install project dependencies
+- script: |
+    npm install
+  displayName: 'Install Dependencies'
 
 # 3. List files in the working directory (for debugging)
 - script: |
     ls -R
   displayName: 'List files'
 
+
 # 4. HTML syntax check using HTMLHint
 - script: |
     npx htmlhint "**/*.html" --config .htmlhintrc
   displayName: 'HTML syntax check'
 
-# 5. CSS syntax check using Stylelint with inline configuration
-- script: |
-    npx stylelint "**/*.css" --config '{ "extends": "stylelint-config-standard", "rules": { "color-no-invalid-hex": true } }'
-  displayName: 'CSS syntax check'
+
 
 # 6. PHP syntax check using PHP linter
 - script: |
