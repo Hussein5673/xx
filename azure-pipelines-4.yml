@@ -13,8 +13,9 @@ steps:
 
 # 2. Check PHP syntax using PHP linter
 - script: |
-    find src/ -name "*.php" -exec php -l {} \;
-  displayName: 'Check PHP Syntax'
+    find . -name "*.php" -exec php -l {} \;
+  displayName: 'PHP syntax check'
+
 
 # 3. Package HTML and PHP files into a ZIP archive
 - script: |
