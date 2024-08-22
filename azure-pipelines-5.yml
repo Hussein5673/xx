@@ -9,10 +9,6 @@ steps:
     versionSpec: '18.x'
   displayName: 'Install Node.js'
 
-# 2. Install project dependencies
-- script: |
-    npm ci  # Clean install
-  displayName: 'Install Dependencies'
 
 # 3. List files in the working directory (for debugging)
 - script: |
