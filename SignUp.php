@@ -1,6 +1,6 @@
 <?php
 // Database configuration
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root"; // Replace with your MySQL username
 $password = ""; // Replace with your MySQL password
 $dbname = "user_base"; // Replace with your actual database name

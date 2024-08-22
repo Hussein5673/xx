@@ -1,8 +1,5 @@
 <?php
 session_start(); // Start the session at the beginning
-if(isset($_SESSION['logged_in'])){$username = $_POST['username']; // To get the username
-    }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,25 +30,25 @@ if(isset($_SESSION['logged_in'])){$username = $_POST['username']; // To get the 
   </div>  
   <div class="MenuButtons">
     <div class="Menu">
-        <a href="Catalog_page.html"><div class="MenuItem">Catalogue</div></a>
+        <a href="Catalog_page.php"><div class="MenuItem">Catalogue</div></a>
     </div>
     <div class="Menu">
-        <a href="SignIn.html"><div class="MenuItem">Signin</div></a>
+        <a href="Sign_in_html.php"><div class="MenuItem">Signin</div></a>
     </div>
     <div class="Menu">
-        <a href="friendspage.html"><div class="MenuItem">Friends</div></a>
+        <a href="friendspage.php"><div class="MenuItem">Friends</div></a>
     </div>
     <div class="Menu">
-        <a href="subscription.html"><div class="MenuItem">Subscriptions</div></a>
+        <a href="subscription.php"><div class="MenuItem">Subscriptions</div></a>
     </div>
     <div class="Menu">
-        <a href="profile_page.html"><div class="MenuItem">Profile</div></a>
+        <a href="profile_page.php"><div class="MenuItem">Profile</div></a>
     </div>
     <div class="Menu">
-        <a href="cart_page.html"><div class="MenuItem">Your Cart</div></a>
+        <a href="cart_page.php"><div class="MenuItem">Your Cart</div></a>
     </div>
     <div class="Menu">
-        <a href="GameInfoPage_Overwatch.html"><div class="MenuItem">Overwatch</div></a>
+        <a href="GameInfoPage_Overwatch.php"><div class="MenuItem">Overwatch</div></a>
     </div>
 </div>
 
