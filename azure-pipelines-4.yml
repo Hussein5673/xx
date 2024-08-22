@@ -1,0 +1,54 @@
+trigger:
+- Development
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+# 1. Install Node.js (required for CSS processing)
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.x'  # Specify the Node.js version
+  displayName: 'Install Node.js'
+
+# 2. Install npm dependencies
+- script: |
+    npm install
+  displayName: 'Install npm Dependencies'
+
+# 3. Lint HTML files using HTMLHint
+- script: |
+    npx htmlhint "src/**/*.html" --config .htmlhintrc
+  displayName: 'Lint HTML Files'
+
+# 4. Lint CSS files using Stylelint
+- script: |
+    npx stylelint "src/**/*.css"
+  displayName: 'Lint CSS Files'
+
+# 5. Check PHP syntax using PHP linter
+- script: |
+    find src/ -name "*.php" -exec php -l {} \;
+  displayName: 'Check PHP Syntax'
+
+# 6. Compile CSS using PostCSS
+- script: |
+    npx postcss src/*.css -o dist/styles.css
+  displayName: 'Compile CSS'
+
+# 7. Package HTML, CSS, and PHP files into a ZIP archive
+- script: |
+    mkdir -p $(Build.ArtifactStagingDirectory)
+    cp -R src/* $(Build.ArtifactStagingDirectory)/
+    cp dist/styles.css $(Build.ArtifactStagingDirectory)/styles.css
+    cd $(Build.ArtifactStagingDirectory)
+    zip -r output.zip .
+  displayName: 'Package Files into ZIP'
+
+# 8. Publish the ZIP file as an artifact
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/output.zip'
+    artifactName: 'html-php-css-package'
+    publishLocation: 'pipeline'
+  displayName: 'Publish ZIP Artifact'
