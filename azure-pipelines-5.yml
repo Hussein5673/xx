@@ -19,11 +19,6 @@ steps:
     ls -R
   displayName: 'List files'
 
-# 4. Compile SCSS to CSS (if using SCSS)
-- script: |
-    npx node-sass src/styles.scss dist/styles.css
-  displayName: 'Compile SCSS to CSS'
-
 
 # 4. HTML syntax check using HTMLHint
 - script: |
