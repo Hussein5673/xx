@@ -21,4 +21,4 @@ steps:
 - script: |
     find . -name "*.php" -exec php -l {} \;
   displayName: 'PHP syntax check'
-  
+
