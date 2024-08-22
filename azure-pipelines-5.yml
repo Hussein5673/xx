@@ -32,13 +32,7 @@ steps:
     find . -name "*.php" -exec php -l {} \;
   displayName: 'PHP syntax check'
 
-# 6. Deploy to Azure Static Web App
-- task: AzureStaticWebApp@0
-  inputs:
-    azure_static_web_apps_api_token: $(azure_static_web_apps_token)
-    app_location: '/'  # Location of your source code
-    output_location: '/'  # Output location after build
-    api_location: '/'  # If you have an API backend, specify its location
+
 # 7. Package HTML, CSS, and PHP files into a ZIP archive
 - script: |
     mkdir -p $(Build.ArtifactStagingDirectory)
