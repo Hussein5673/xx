@@ -13,17 +13,24 @@ steps:
 
 # 2. Check PHP syntax using PHP linter
 - script: |
-    find . -name "*.php" -exec php -l {} \;
-  displayName: 'PHP syntax check'
-
+    find src/ -name "*.php" -exec php -l {} \;
+  displayName: 'Check PHP Syntax'
 
 # 3. Package HTML and PHP files into a ZIP archive
 - script: |
-    mkdir -p $(Build.ArtifactStagingDirectory)
-    cp -R src/* $(Build.ArtifactStagingDirectory)/
-    cd $(Build.ArtifactStagingDirectory)
-    zip -r output.zip .
+    if [ -d "src" ]; then
+      mkdir -p $(Build.ArtifactStagingDirectory)
+      cp -R src/* $(Build.ArtifactStagingDirectory)/
+      cd $(Build.ArtifactStagingDirectory)
+      zip -r output.zip .
+    else
+      echo "Directory 'src' does not exist or is empty."
+      exit 1
+    fi
   displayName: 'Package Files into ZIP'
+
+
+
 
 # 4. Publish the ZIP file as an artifact
 - task: PublishPipelineArtifact@1
@@ -32,4 +39,5 @@ steps:
     artifactName: 'html-php-package'
     publishLocation: 'pipeline'
   displayName: 'Publish ZIP Artifact'
+
 
