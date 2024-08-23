@@ -13,8 +13,6 @@ session_start(); // Start the session at the beginning
 </head>
 <body>
 <div class="HomePage" >
-  <div class="Header" style="width: 100%; height: 80px; left: 8px; top: 8px; position: absolute">
-    </div>
   </div>
   <div class="Searchbox">
     <div class="Search">
