@@ -9,17 +9,17 @@ steps:
   displayName: 'Install Node.js'
 
 
-# 3. List files in the working directory (for debugging)
+# 2 List files in the working directory (for debugging)
 - script: |
     ls -R
   displayName: 'List files'
 
-# 4. HTML syntax check using HTMLHint
+# 3. HTML syntax check using HTMLHint
 - script: |
     npx htmlhint "*.html" --config .htmlhintrc
   displayName: 'HTML syntax check'
 
-# 5. CSS syntax check using Stylelint with inline configuration
+# 4. CSS syntax check using Stylelint with inline configuration
 - script: |
     echo '{
       "rules": {
@@ -30,12 +30,12 @@ steps:
     npx stylelint "**/*.css"
   displayName: 'CSS Syntax Check'
 
-# 6. PHP syntax check using PHP linter
+# 5. PHP syntax check using PHP linter
 - script: |
     find . -name "*.php" -exec php -l {} \;
   displayName: 'PHP syntax check'
 
-# 7. Package HTML, CSS, and PHP files into a ZIP archive
+# 6. Package HTML, CSS, and PHP files into a ZIP archive
 - script: |
     mkdir -p $(Build.ArtifactStagingDirectory)
     find . -name "*.html" -o -name "*.php" -o -name "*.css" -exec cp {} $(Build.ArtifactStagingDirectory) \;
@@ -43,7 +43,7 @@ steps:
     zip -r output.zip .
   displayName: 'Package HTML, CSS, and PHP Files into ZIP'
 
-# 8. Publish the ZIP file as an artifact
+# 7. Publish the ZIP file as an artifact
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)/output.zip'
