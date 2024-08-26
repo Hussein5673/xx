@@ -196,41 +196,41 @@
     // Defining a constant for the currency sign
     define("CURRENCY", "€");
 
-// PHP code to connect to MySQL and fetch data
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "catalog_db";
+    // Include the database name, username, password, and server details
+    include 'username_database_password_server.php';
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+    // Establish the connection
+    $conn = sqlsrv_connect($serverName, $connectionOptions);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
-// SQL query to select data
-$sql = "SELECT * FROM `game_title`"; // The IDs for each game in the database. 
-$result = $conn->query($sql);
-
-$games = []; // Initialize an empty array for the game names and prices.
-
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-      $games[$row['ID']] = [  // Use the ID as the key for the outer array
-        'title' => $row['Game_Title'],  // Store the title in the inner associative array
-        'image_path' => $row['image_path'], // Store the image path in the inner associative array
-        'price' => $row['price']   // Store the price in the inner associative array
-    ];
-       
+    // Check connection
+    if ($conn === false) {
+        die(print_r(sqlsrv_errors(), true));
     }
-} else {
-  echo "No games found.";
-}
 
-$conn->close();
+    // SQL query to select data
+    $sql = "SELECT * FROM game_title"; // The IDs for each game in the database.
+    $stmt = sqlsrv_query($conn, $sql); // Execute the query
+
+    // Initialize an empty array for the game names and prices.
+    $games = [];
+
+    // Check if the query was successful and fetch the data
+    if ($stmt) {
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $games[$row['ID']] = [
+                'title' => $row['Game_Title'],  // Store the title in the inner associative array
+                'image_path' => $row['image_path'], // Store the image path in the inner associative array
+                'price' => $row['price']   // Store the price in the inner associative array
+            ];
+        }
+    } else {
+        echo "No games found.";
+    }
+
+    // Close the connection
+    sqlsrv_close($conn);
 ?>
+
     <div style="
         width: 100%;
         height: 2500px;
