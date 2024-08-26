@@ -26,7 +26,7 @@ steps:
         "color-no-invalid-hex": true
       }
     }' > .stylelintrc.json
-    npx stylelint "**/*.css"
+    npx stylelint "*.css"
   displayName: 'CSS Syntax Check'
 
 # 5. PHP syntax check using PHP linter
@@ -34,38 +34,10 @@ steps:
     find . -name "*.php" -exec php -l {} \;
   displayName: 'PHP syntax check'
 
-# 6. Package HTML, CSS, and PHP files into a ZIP archive
-- script: |
-    mkdir -p $(Build.ArtifactStagingDirectory)
-    find . -name "*.html" -o -name "*.php" -o -name "*.css" -exec cp {} $(Build.ArtifactStagingDirectory) \;
-    cd $(Build.ArtifactStagingDirectory)
-    zip -r release.zip .
-  displayName: 'Package HTML, CSS, and PHP Files into ZIP'
-
-# 7. Publish the ZIP file as an artifact
+# 6. Publish the files as an artifact (no zipping)
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/release.zip'
+    targetPath: '$(Build.SourcesDirectory)' # Adjust this path as needed to include only the files you want
     artifactName: 'html-css-php-package'
     publishLocation: 'pipeline'
-  displayName: 'Publish ZIP Artifact'
-
-# 8. Download the ZIP file artifact
-- task: DownloadPipelineArtifact@2
-  inputs:
-    artifact: 'html-css-php-package'
-    path: '$(Pipeline.Workspace)'
-  displayName: 'Download ZIP Artifact'
-
-# 9. Deploy the ZIP file to Azure Web App
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'gamevaultwebapp'
-    appName: 'GameVault'
-    appType: 'webApp'
-    package: 'D:\a\r1\a/_Group A/html-css-php-package/release.zip'
-  displayName: 'Deploy GameVault'
-# 10. List files in the download directory (for debugging)
-- script: |
-    ls -R $(Pipeline.Workspace)/html-css-php-package
-  displayName: 'List Files in Download Directory'
+  displayName: 'Publish Files Artifact'
