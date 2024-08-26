@@ -8,7 +8,6 @@ steps:
     versionSpec: '18.x'
   displayName: 'Install Node.js'
 
-
 # 2 List files in the working directory (for debugging)
 - script: |
     ls -R
@@ -50,3 +49,12 @@ steps:
     artifactName: 'html-css-php-package'
     publishLocation: 'pipeline'
   displayName: 'Publish ZIP Artifact'
+
+# 8. Deploy the ZIP file to Azure Web App
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'gamevaultwebapp'
+    appName: 'GameVault'
+    appType: 'webApp'
+    package: '$(Pipeline.Workspace)/html-css-php-package/output.zip'
+  displayName: 'Deploy GameVault'
