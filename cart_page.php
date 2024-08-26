@@ -1,18 +1,40 @@
 <?php
 session_start();
 
-// Example: Assume $games is an array fetched from the database or defined here
-$games = [
-    1 => ['name' => 'Horizon', 'price' => 50, 'image' => 'cart images/image 6.png'],
-    2 => ['name' => 'Game 2', 'price' => 75, 'image' => 'cart images/image 7.png'],
-    // Add more games as needed
-];
+// Database connection settings
+$host = 'localhost';
+$dbname = 'user_base';
+$username = 'root'; // Default XAMPP MySQL username
+$password = '';     // Default XAMPP MySQL password (blank)
+
+// Establish database connection
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
+}
 
 // Retrieve the cart items from the session
 $cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
-// Initialize total cost
 $total_cost = 0;
+
+// Prepare an array to store game details
+$games = [];
+
+// Fetch game details for items in the cart
+if (!empty($cart_items)) {
+    $placeholders = implode(',', array_fill(0, count($cart_items), '?'));
+    $stmt = $pdo->prepare("SELECT id, name, price, image FROM game_title WHERE id IN ($placeholders)");
+    $stmt->execute($cart_items);
+    $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Calculate total cost
+    foreach ($games as $game) {
+        $total_cost += $game['price'];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -192,18 +214,14 @@ $total_cost = 0;
         <h1 class="cart-title">Cart</h1>
         
         <section class="products">
-            <?php if (!empty($cart_items)): ?>
-                <?php foreach ($cart_items as $item_id): ?>
-                    <?php if (isset($games[$item_id])): ?>
-                        <?php $total_cost += $games[$item_id]['price']; ?>
-                        <div class="product">
-                            <img src="<?php echo $games[$item_id]['image']; ?>" alt="<?php echo htmlspecialchars($games[$item_id]['name']); ?>">
-                            <h2><?php echo htmlspecialchars($games[$item_id]['name']); ?></h2>
-                            <div class="price"><?php echo htmlspecialchars($games[$item_id]['price']); ?> credits</div>
-                            <!-- Implement remove button functionality later -->
-                            <button class="remove-btn">Remove</button>
-                        </div>
-                    <?php endif; ?>
+            <?php if (!empty($cart_items) && !empty($games)): ?>
+                <?php foreach ($games as $game): ?>
+                    <div class="product">
+                        <img src="<?php echo htmlspecialchars($game['image']); ?>" alt="<?php echo htmlspecialchars($game['name']); ?>">
+                        <h2><?php echo htmlspecialchars($game['name']); ?></h2>
+                        <div class="price"><?php echo htmlspecialchars($game['price']); ?> credits</div>
+                        <button class="remove-btn" data-game-id="<?php echo htmlspecialchars($game['id']); ?>">Remove</button>
+                    </div>
                 <?php endforeach; ?>
             <?php else: ?>
                 <p>Your cart is empty.</p>
