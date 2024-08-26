@@ -3619,7 +3619,7 @@
                 border-radius: 20px;
               "></div>  <!-- PROJECT ZERO -->
             <form method="POST" action="add_to_cart.php" style="position: absolute; top: 0; left: 0; width: 100%;">
-    <input type="hidden" name="game_name" value="<?php echo htmlspecialchars($game_name); ?>">
+    <input type="hidden" name="game_name" value="Project Zero 20th Anniversary Celebration DLC">
     <button type="submit" name="add_to_cart" style="
         display: inline-block;
         width: 100%;
