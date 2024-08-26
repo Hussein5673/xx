@@ -50,7 +50,14 @@ steps:
     publishLocation: 'pipeline'
   displayName: 'Publish ZIP Artifact'
 
-# 8. Deploy the ZIP file to Azure Web App
+# 8. Download the ZIP file artifact
+- task: DownloadPipelineArtifact@2
+  inputs:
+    artifact: 'html-css-php-package'
+    path: '$(Pipeline.Workspace)'
+  displayName: 'Download ZIP Artifact'
+
+# 9. Deploy the ZIP file to Azure Web App
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'gamevaultwebapp'
