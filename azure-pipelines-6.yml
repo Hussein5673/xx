@@ -63,7 +63,7 @@ steps:
     azureSubscription: 'gamevaultwebapp'
     appName: 'GameVault'
     appType: 'webApp'
-    package: '$(Pipeline.Workspace)/html-css-php-package/release.zip'
+    package: 'D:\a\r1\a/_Group A/html-css-php-package/release.zip'
   displayName: 'Deploy GameVault'
 # 10. List files in the download directory (for debugging)
 - script: |
