@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Example: Assume $games is an array fetched from the database
+// Example: Assume $games is an array fetched from the database or defined here
 $games = [
     1 => ['name' => 'Horizon', 'price' => 50, 'image' => 'cart images/image 6.png'],
     2 => ['name' => 'Game 2', 'price' => 75, 'image' => 'cart images/image 7.png'],
@@ -11,6 +11,7 @@ $games = [
 // Retrieve the cart items from the session
 $cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
+// Initialize total cost
 $total_cost = 0;
 ?>
 
