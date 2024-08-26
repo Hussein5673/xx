@@ -34,11 +34,26 @@ steps:
     find . -name "*.php" -exec php -l {} \;
   displayName: 'PHP syntax check'
 
-# 6. Deploy files directly to Azure Web App
+# 6. Package all files into a ZIP archive
+- script: |
+    mkdir -p $(Build.ArtifactStagingDirectory)
+    cd $(Build.SourcesDirectory)
+    zip -r $(Build.ArtifactStagingDirectory)/output.zip .
+  displayName: 'Package All Files into ZIP'
+
+# 7. Publish the ZIP file as an artifact
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/output.zip'
+    artifactName: 'all-files-package'
+    publishLocation: 'pipeline'
+  displayName: 'Publish ZIP Artifact'
+
+# 8. Deploy the ZIP file to Azure Web App
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'gamevaultwebapp'  # Your service connection name
-    appName: 'GameVault'  # Your Azure Web App name
+    azureSubscription: 'gamevaultwebapp'
+    appName: 'GameVault'
     appType: 'webAppLinux'
-    package: '$(Build.SourcesDirectory)/path-to-your-files'  # Adjust this to your actual file paths or directory
+    package: '$(Pipeline.Workspace)/all-files-package/output.zip'
   displayName: 'Deploy GameVault'
