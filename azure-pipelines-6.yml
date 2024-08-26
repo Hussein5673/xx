@@ -8,6 +8,11 @@ steps:
     versionSpec: '18.x'
   displayName: 'Install Node.js'
 
+# 2. List files in the working directory (for debugging)
+- script: |
+    ls -R
+  displayName: 'List files'
+
 # 3. HTML syntax check using HTMLHint
 - script: |
     npx htmlhint "*.html" --config .htmlhintrc
@@ -29,35 +34,33 @@ steps:
     find . -name "*.php" -exec php -l {} \;
   displayName: 'PHP syntax check'
 
-- task: Artifacts-Compress@3
-  inputs:
-    source: '$(Build.ArtifactStagingDirectory)'
-    dest: '$(Build.ArtifactStagingDirectory)'
-    compressionLevel: 'Fastest'
-    multiplePackages: true
-    cleanDest: false
+# 6. Package all files into a ZIP archive using Linux commands
+- script: |
+    mkdir -p $(Build.ArtifactStagingDirectory)
+    cd $(Build.SourcesDirectory)
+    zip -r $(Build.ArtifactStagingDirectory)/output.zip . -x "*.git*"
   displayName: 'Package All Files into ZIP'
 
 # 7. Publish the ZIP file as an artifact
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)'
+    targetPath: '$(Build.ArtifactStagingDirectory)/output.zip'
     artifactName: 'all-files-package'
     publishLocation: 'pipeline'
   displayName: 'Publish ZIP Artifact'
 
-# Add this step before the deployment step to verify the contents of the artifact directory
+# 8. List Artifacts Directory for Debugging
 - script: |
     ls -R $(Pipeline.Workspace)/all-files-package
   displayName: 'List Artifacts Directory'
 
-# Debug step to verify contents
+# 9. Debug step to verify contents
 - script: |
     echo "Checking contents of Build.ArtifactStagingDirectory"
     ls -R $(Build.ArtifactStagingDirectory)
   displayName: 'List Build Artifact Staging Directory'
   
-# 8. Deploy the ZIP file to Azure Web App
+# 10. Deploy the ZIP file to Azure Web App
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'gamevaultwebapp'
