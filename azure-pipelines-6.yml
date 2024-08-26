@@ -29,17 +29,19 @@ steps:
     find . -name "*.php" -exec php -l {} \;
   displayName: 'PHP syntax check'
 
-# 6. Package all files into a ZIP archive
-- script: |
-    mkdir -p $(Build.ArtifactStagingDirectory)
-    cd $(Build.SourcesDirectory)
-    zip -r $(Build.ArtifactStagingDirectory)/ .
+- task: Artifacts-Compress@3
+  inputs:
+    source: '$(Build.ArtifactStagingDirectory)'
+    dest: '$(Build.ArtifactStagingDirectory)'
+    compressionLevel: 'Fastest'
+    multiplePackages: true
+    cleanDest: false
   displayName: 'Package All Files into ZIP'
 
 # 7. Publish the ZIP file as an artifact
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
     artifactName: 'all-files-package'
     publishLocation: 'pipeline'
   displayName: 'Publish ZIP Artifact'
