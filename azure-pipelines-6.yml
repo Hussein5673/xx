@@ -54,10 +54,10 @@ steps:
     publishLocation: 'pipeline'
   displayName: 'Publish ZIP Artifact'
 
-# 8. Debug step to verify contents of the artifact directory
+# 8. List Artifacts Directory for Debugging
 - script: |
     echo "Checking contents of artifact directory:"
-    ls -R $(Pipeline.Workspace)
+    ls -R $(Pipeline.Workspace)/all-files-package
   displayName: 'List Artifacts Directory'
 
 # 9. Debug step to verify contents of Build.ArtifactStagingDirectory
@@ -72,5 +72,5 @@ steps:
     azureSubscription: 'gamevaultwebapp'
     appName: 'GameVault'
     appType: 'webAppLinux'
-    package: '$(Pipeline.Workspace)/all-files-package/output.zip'
+    package: '/home/vsts/work/1/a/output.zip' # Updated path to match the location of output.zip
   displayName: 'Deploy GameVault'
