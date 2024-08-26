@@ -1,46 +1,29 @@
 <?php
+include 'username_database_password_server.php';
 
-session_start(); // Start the session at the beginning
-if(isset($_SESSION['logged_in'])) {
-  $username = $_SESSION['username']; // Fetch username from session
-} 
-// Database connection details
-$servername = "localhost";
-$username = "root"; // Replace with your database username
-$password = ""; // Replace with your database password
-$dbname = "user_base";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Establish the connection
+$conn = sqlsrv_connect($serverName, $connectionOptions);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($conn === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
+$result = $conn->query($sql);
 
-// Optional: Set the character set to handle utf8mb4 data properly
-$conn->set_charset("utf8mb4");
+// Default value for Friends as an empty string
+    $defaultFriendsValue = '';
 
-// Fetch user information securely using prepared statements
-$sql = "SELECT level, trophies, cups, medals, prizes FROM user_profile WHERE user_id = ?";
-$user_id = 1; // Example: Fetch user with ID 1
-$sql = "SELECT * FROM user WHERE Id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    // Output data of each row
-    while($row = $result->fetch_assoc()) {
-        $user_name = $row["Name"];
-        $user_email = $row["Email"];
-        $user_username = $row["UserName"];
-        // You can use these variables in your HTML below
+
+
+    // Execute the query and check if it was successful
+    if ($stmt === false) {
+        die(print_r(sqlsrv_errors(), true));
+    } else {
+        header("Location: index.php");
+        exit;
     }
-} else {
-    echo "0 results";
-}
+
 if ($result->num_rows > 0) {
   // Fetch the user data
   $row = $result->fetch_assoc();
@@ -52,6 +35,8 @@ if ($result->num_rows > 0) {
 } else {
   echo "No user profile found";
 }
+
+sqlsrv_close($conn);
 ?>
 
 
@@ -210,7 +195,6 @@ if ($result->num_rows > 0) {
 </body>
 </html>
 <?php
-$conn->close();
 ?>
   </div>
 </body>
