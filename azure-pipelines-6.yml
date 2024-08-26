@@ -8,7 +8,7 @@ steps:
     versionSpec: '18.x'
   displayName: 'Install Node.js'
 
-# 2 List files in the working directory (for debugging)
+# 2. List files in the working directory (for debugging)
 - script: |
     ls -R
   displayName: 'List files'
@@ -65,3 +65,7 @@ steps:
     appType: 'webApp'
     package: '$(Pipeline.Workspace)/html-css-php-package/release.zip'
   displayName: 'Deploy GameVault'
+# 10. List files in the download directory (for debugging)
+- script: |
+    ls -R $(Pipeline.Workspace)/html-css-php-package
+  displayName: 'List Files in Download Directory'
