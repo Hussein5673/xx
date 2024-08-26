@@ -57,7 +57,7 @@ steps:
 # 8. Debug step to verify contents of the artifact directory
 - script: |
     echo "Checking contents of artifact directory:"
-    ls -R $(Pipeline.Workspace)/all-files-package
+    ls -R $(Pipeline.Workspace)
   displayName: 'List Artifacts Directory'
 
 # 9. Debug step to verify contents of Build.ArtifactStagingDirectory
