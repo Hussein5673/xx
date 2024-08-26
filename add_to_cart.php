@@ -1,23 +1,23 @@
 <?php
 session_start();
 
-// Check if the game ID is sent via POST
-if (isset($_POST['game_id'])) {
-    $game_id = $_POST['game_id'];
+// Check if the game name is sent via POST
+if (isset($_POST['game_name'])) {
+    $game_name = $_POST['game_name'];
 
     // Initialize the cart if it doesn't exist
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
 
-    // Add the game to the cart
-    $_SESSION['cart'][] = $game_id;
+    // Add the game name to the cart
+    $_SESSION['cart'][] = $game_name;
 
     // Redirect to the cart page
     header("Location: cart_page.php");
     exit();
 } else {
-    // If no game ID is provided, redirect back to the catalog or show an error
+    // If no game name is provided, redirect back to the catalog or show an error
     header("Location: catalog_page.php");
     exit();
 }

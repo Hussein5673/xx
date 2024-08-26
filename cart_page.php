@@ -24,11 +24,11 @@ if (!empty($cart_items)) {
     // Ensure no duplicates in cart items
     $cart_items = array_unique($cart_items);
 
-    // Prepare placeholders for the SQL query
+    // Create placeholders for the SQL query
     $placeholders = implode(',', array_fill(0, count($cart_items), '?'));
 
     // Prepare the SQL statement
-    $sql = "SELECT ID, Game_Title, price, image_path FROM game_title WHERE ID IN ($placeholders)";
+    $sql = "SELECT ID, Game_Title, price, image_path FROM game_title WHERE Game_Title IN ($placeholders)";
     $stmt = sqlsrv_query($conn, $sql, $cart_items);
 
     // Check if the query was successful
