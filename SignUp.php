@@ -1,38 +1,44 @@
 <?php
-// Database configuration
-$servername = "localhost:3307";
-$username = "root"; // Replace with your MySQL username
-$password = ""; // Replace with your MySQL password
-$dbname = "user_base"; // Replace with your actual database name
+// Include the database name, username, password, and server
+include 'username_database_password_server.php';
 
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Establish the connection
+$conn = sqlsrv_connect($serverName, $connectionOptions);
 
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Check connection
+if ($conn === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect and sanitize the input data
-    $name = $conn->real_escape_string($_POST['name']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $username = $conn->real_escape_string($_POST['username']);
-    $password = password_hash($conn->real_escape_string($_POST['password']), PASSWORD_DEFAULT);
-    $dob = $conn->real_escape_string($_POST['dob']);
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $username = htmlspecialchars($_POST['username']);
+    $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
+    $dob = htmlspecialchars($_POST['dob']);
 
-    // Prepare an SQL statement to insert the data into the table
-    $sql = "INSERT INTO user (Name, Email, UserName, Password, DateOfBirth) VALUES ('$name', '$email', '$username', '$password', '$dob')";
+// Prepare an SQL statement to insert the data into the table with a default value for Friends
+$sql = "INSERT INTO [user] (Name, Email, UserName, Password, DateOfBirth, Friends) VALUES (?, ?, ?, ?, ?, ?)";
+
+// Default value for Friends as an empty string
+    $defaultFriendsValue = '';
+
+// Prepare the statement with the new default value
+$params = array($name, $email, $username, $password, $dob, $defaultFriendsValue);
+$stmt = sqlsrv_query($conn, $sql, $params);
+
 
     // Execute the query and check if it was successful
-    if ($conn->query($sql) === TRUE) {
-        header("Location: homepage.php");
+    if ($stmt === false) {
+        die(print_r(sqlsrv_errors(), true));
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        header("Location: index.php");
+        exit;
     }
 }
 
 // Close the connection
-$conn->close();
+sqlsrv_close($conn);
 ?>

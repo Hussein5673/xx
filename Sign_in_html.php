@@ -18,7 +18,7 @@ session_start(); // Start the session at the beginning
             <div class="Frame375" style="flex-direction: column; justify-content: center; align-items: flex-start; gap: 32px; display: flex">
               <div class="SignIn" style="text-align: center; color: #333333; font-size: 32px; font-family: Poppins; font-weight: 500; word-wrap: break-word">Sign in</div>
               <!-- Start of the form -->
-          <form action="http://localhost/Group%20A/Signin.php" method="POST">
+          <form action="Signin.php" method="POST">
               <div class="Email" style="height: 87px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                 <div class="Frame243" style="width: 459px; padding-bottom: 3px; padding-right: 306px; justify-content: flex-start; align-items: center; display: inline-flex">
                   <div class="Label" style="color: #666666; font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Username or email </div>

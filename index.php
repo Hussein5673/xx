@@ -12,7 +12,7 @@ session_start(); // Start the session at the beginning
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="HomePage" >
+<div class="HomePage">
   </div>
   <div class="Searchbox">
     <div class="Search">
@@ -46,7 +46,7 @@ session_start(); // Start the session at the beginning
         <a href="cart_page.php"><div class="MenuItem">Your Cart</div></a>
     </div>
     <div class="Menu">
-        <a href="GameInfoPage_Overwatch.php"><div class="MenuItem">Overwatch</div></a>
+        <a href="GameInfoPage_Overwatch.html"><div class="MenuItem">Overwatch</div></a>
     </div>
 </div>
 
@@ -57,4 +57,3 @@ session_start(); // Start the session at the beginning
 </body>
 </html>
 <!--Commit test-->
-

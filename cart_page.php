@@ -1,18 +1,15 @@
 <?php
 session_start();
 
-// Database connection settings
-$host = 'localhost';
-$dbname = 'user_base';
-$username = 'root'; // Default XAMPP MySQL username
-$password = '';     // Default XAMPP MySQL password (blank)
+// Include the database name username password
+include 'username_database_password_server.php';
 
-// Establish database connection
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+// Establish the connection
+$conn = sqlsrv_connect($serverName, $connectionOptions);
+
+// Check connection
+if ($conn === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
 
 // Retrieve the cart items from the session
@@ -25,9 +22,20 @@ $games = [];
 
 // Fetch game details for items in the cart
 if (!empty($cart_items)) {
+    // Ensure no duplicates in cart items
+    $cart_items = array_unique($cart_items);
+    
+    // Create placeholders for the SQL query
     $placeholders = implode(',', array_fill(0, count($cart_items), '?'));
-    $stmt = $pdo->prepare("SELECT id, name, price, image FROM game_title WHERE id IN ($placeholders)");
+    
+    // Prepare the SQL statement
+    $sql = "SELECT ID, Game_Title, price, image FROM game_title WHERE ID IN ($placeholders)";
+    $stmt = $pdo->prepare($sql);
+    
+    // Execute the statement with the cart items
     $stmt->execute($cart_items);
+    
+    // Fetch all the results
     $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Calculate total cost
@@ -244,10 +252,4 @@ if (!empty($cart_items)) {
     <nav class="navigation">
         <div class="nav-item"><a href="index.php">Home</a></div>
         <div class="nav-item"><a href="Catalog_page.php">Catalogue</a></div>
-        <div class="nav-item"><a href="Sign_in_html.php">Signin</a></div>
-        <div class="nav-item"><a href="SignUp.html">Signup</a></div>
-        <div class="nav-item"><a href="friendspage.html">Friends</a></div>
-        <div class="nav-item"><a href="subscription.html">Subscriptions</a></div>
-    </nav>
-</body>
-</html>
+        <div class="nav-item"><a href="
