@@ -14,7 +14,7 @@ if (isset($_POST['game_id'])) {
     $_SESSION['cart'][] = $game_id;
 
     // Redirect to the cart page
-    header("Location: cart_page.html");
+    header("Location: cart_page.php");
     exit();
 } else {
     // If no game ID is provided, redirect back to the catalog or show an error

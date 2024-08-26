@@ -200,7 +200,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "catalog_db";
+$dbname = "user_base";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
