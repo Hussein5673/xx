@@ -28,7 +28,7 @@ if (!empty($cart_items)) {
     $placeholders = implode(',', array_fill(0, count($cart_items), '?'));
 
     // Prepare the SQL statement
-    $sql = "SELECT ID, Game_Title, price, image FROM game_title WHERE ID IN ($placeholders)";
+    $sql = "SELECT ID, Game_Title, price, image_path FROM game_title WHERE ID IN ($placeholders)";
     $stmt = sqlsrv_query($conn, $sql, $cart_items);
 
     // Check if the query was successful
