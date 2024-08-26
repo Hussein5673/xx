@@ -8,11 +8,6 @@ steps:
     versionSpec: '18.x'
   displayName: 'Install Node.js'
 
-# 2. List files in the working directory (for debugging)
-- script: |
-    ls -R
-  displayName: 'List files'
-
 # 3. HTML syntax check using HTMLHint
 - script: |
     npx htmlhint "*.html" --config .htmlhintrc
@@ -49,6 +44,17 @@ steps:
     publishLocation: 'pipeline'
   displayName: 'Publish ZIP Artifact'
 
+# Add this step before the deployment step to verify the contents of the artifact directory
+- script: |
+    ls -R $(Pipeline.Workspace)/all-files-package
+  displayName: 'List Artifacts Directory'
+
+# Debug step to verify contents
+- script: |
+    echo "Checking contents of Build.ArtifactStagingDirectory"
+    ls -R $(Build.ArtifactStagingDirectory)
+  displayName: 'List Build Artifact Staging Directory'
+  
 # 8. Deploy the ZIP file to Azure Web App
 - task: AzureWebApp@1
   inputs:
