@@ -9,17 +9,13 @@ steps:
   displayName: 'Install Node.js'
 
 
-# 3. List files in the working directory (for debugging)
+# 3. HTML syntax check using HTMLHint
 - script: |
-    ls -R
-  displayName: 'List files'
-
-# 4. HTML syntax check using HTMLHint
-- script: |
+    echo "Running HTMLHint for HTML files:"
     npx htmlhint "*.html" --config .htmlhintrc
   displayName: 'HTML syntax check'
 
-# 5. CSS syntax check using Stylelint with inline configuration
+# 4. CSS syntax check using Stylelint with inline configuration
 - script: |
     echo '{
       "rules": {
@@ -27,26 +23,38 @@ steps:
         "color-no-invalid-hex": true
       }
     }' > .stylelintrc.json
+    echo "Running Stylelint for CSS files:"
     npx stylelint "**/*.css"
   displayName: 'CSS Syntax Check'
 
-# 6. PHP syntax check using PHP linter
+# 5. PHP syntax check using PHP linter
 - script: |
+    echo "Running PHP linter for PHP files:"
     find . -name "*.php" -exec php -l {} \;
   displayName: 'PHP syntax check'
 
-# 7. Package HTML, CSS, and PHP files into a ZIP archive
+# 6. Package all files into a ZIP archive using Linux commands
 - script: |
+    echo "Creating artifact staging directory and packaging files:"
     mkdir -p $(Build.ArtifactStagingDirectory)
-    find . -name "*.html" -o -name "*.php" -o -name "*.css" -exec cp {} $(Build.ArtifactStagingDirectory) \;
-    cd $(Build.ArtifactStagingDirectory)
-    zip -r output.zip .
-  displayName: 'Package HTML, CSS, and PHP Files into ZIP'
+    cd $(Build.SourcesDirectory)
+    zip -r $(Build.ArtifactStagingDirectory)/output.zip . -x "*.git*"
+  displayName: 'Package All Files into ZIP'
 
-# 8. Publish the ZIP file as an artifact
+# 7. Publish the ZIP file as an artifact
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)/output.zip'
-    artifactName: 'html-css-php-package'
+    artifactName: 'all-files-package'
     publishLocation: 'pipeline'
   displayName: 'Publish ZIP Artifact'
+
+  
+# 10. Deploy the ZIP file to Azure Web App
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'gamevaultwebapp'
+    appName: 'GameVault'
+    appType: 'webAppLinux'
+    package: '/home/vsts/work/1/a/output.zip' # Updated path to match the location of output.zip
+  displayName: 'Deploy GameVault'
