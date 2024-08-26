@@ -1,3 +1,6 @@
+<?php
+session_start(); // Start the session at the beginning
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +12,10 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="HomePage" >
-  <div class="Header" style="width: 100%; height: 80px; left: 8px; top: 8px; position: absolute">
-    </div>
+<div class="HomePage">
   </div>
-  
-  <div class="Frame39">
-    <div class="InterfaceInterface5224px">
+  <div class="Searchbox">
+    <div class="Search">
         <div class="Icon">
             <img src="Icons/Icon.png" alt="Icon Image">
         </div>
@@ -24,23 +24,29 @@
 </div>
 <div class="WelcomeToGameVaultFeelFreeToBrowseThroughOurLatestCollectionOfGames" style="width: 856px; height: 278px; left: 300px; top: 253px; position: absolute; color: white; font-size: 57px; font-family: Roboto; font-weight: 400; line-height: 64px; word-wrap: break-word">Welcome To Game Vault<br/><br/>Feel free to browse through our latest collection of games</div>
     <nav>
-    <a href="homepage.html"><div class="GameVault" style="width: 348px; height: 70px; left: 56px; top: 14px; position: absolute; text-align: center; color: white; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; word-wrap: break-word">Game Vault</div></a>
+    <a href=""><div class="GameVault" style="width: 348px; height: 70px; left: 56px; top: 14px; position: absolute; text-align: center; color: white; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; word-wrap: break-word">Game Vault</div></a>
   </div>  
   <div class="MenuButtons">
     <div class="Menu">
-        <a href="Catalog_page.html"><div class="MenuItem">Catalogue</div></a>
+        <a href="Catalog_page.php"><div class="MenuItem">Catalogue</div></a>
     </div>
     <div class="Menu">
-        <a href="SignIn.html"><div class="MenuItem">Signin</div></a>
+        <a href="Sign_in_html.php"><div class="MenuItem">Signin</div></a>
     </div>
     <div class="Menu">
-        <a href="SignUp.html"><div class="MenuItem">Signup</div></a>
+        <a href="friendspage.php"><div class="MenuItem">Friends</div></a>
     </div>
     <div class="Menu">
-        <a href="friendspage.html"><div class="MenuItem">Friends</div></a>
+        <a href="subscription.php"><div class="MenuItem">Subscriptions</div></a>
     </div>
     <div class="Menu">
-        <a href="subscription.html"><div class="MenuItem">Subscriptions</div></a>
+        <a href="profile_page.php"><div class="MenuItem">Profile</div></a>
+    </div>
+    <div class="Menu">
+        <a href="cart_page.php"><div class="MenuItem">Your Cart</div></a>
+    </div>
+    <div class="Menu">
+        <a href="GameInfoPage_Overwatch.html"><div class="MenuItem">Overwatch</div></a>
     </div>
 </div>
 
@@ -50,3 +56,4 @@
 
 </body>
 </html>
+<!--Commit test-->

@@ -1,3 +1,42 @@
+<?php
+include 'username_database_password_server.php';
+
+// Establish the connection
+$conn = sqlsrv_connect($serverName, $connectionOptions);
+
+// Check connection
+if ($conn === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+$result = $conn->query($sql);
+
+// Default value for Friends as an empty string
+    $defaultFriendsValue = '';
+
+
+    // Execute the query and check if it was successful
+    if ($stmt === false) {
+        die(print_r(sqlsrv_errors(), true));
+    } else {
+        header("Location: index.php");
+        exit;
+    }
+
+if ($result->num_rows > 0) {
+  // Fetch the user data
+  $row = $result->fetch_assoc();
+  $user_level = $row["level"];
+  $user_trophies = $row["trophies"];
+  $user_cups = $row["cups"];
+  $user_medals = $row["medals"];
+  $user_prizes = $row["prizes"];
+} else {
+  echo "No user profile found";
+}
+
+sqlsrv_close($conn);
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +51,8 @@
   </style>
 </head>
 <body>
+  <!--hello-->
+
 <div class="LindaSProfilePage" style="width: 1920px; height: 1024px; position: relative; background: white">
   <img class="UnsplashSihczyewmb0" style="width: 1920px; height: 1024px; left: 0px; top: 0px; position: absolute" src="picturespfp/unsplash_SIhcZYEwMB0.png" />
   <img class="Union" style="width: 1256px; height: 128px; left: 217px; top: 278px; position: absolute; border-radius: 20px" src="picturespfp/Union.png" />
@@ -19,6 +60,9 @@
   <div class="Frame98" style="height: 112px; padding-top: 8px; padding-left: 16px; padding-right: 342px; left: 1438px; top: 891px; position: absolute; background: #07041D; border-radius: 12px; overflow: hidden; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 12px; display: inline-flex">
     <img class="Meeting" style="width: 65px; height: 48px" src="picturespfp/Meeting.png" />
     <div class="Players" style="color: white; font-size: 25px; font-family: Pavanam; font-weight: 400; line-height: 22px; word-wrap: break-word">players<br/></div>
+<div class="Username" style="left: 395px; top: 305px; position: absolute; color: white; font-size: 48px; font-family: Pavanam; font-weight: 400; line-height: 56px; word-wrap: break-word">
+    <?php echo htmlspecialchars($user_username); ?> 
+</div>
   </div>
   <div class="Frame93" style="width: 429px; height: 112px; left: 984px; top: 891px; position: absolute; background: #07041D; border-radius: 12px; overflow: hidden">
     <div class="PremiumRequiredForOnlinePlay" style="left: 16px; top: 74px; position: absolute; color: white; font-size: 25px; font-family: Pavanam; font-weight: 400; line-height: 22px; word-wrap: break-word">premium required for online play</div>
@@ -34,28 +78,54 @@
     </div>
   </div>
   <img class="Customer" style="width: 100px; height: 100px; left: 253px; top: 280px; position: absolute" src="picturespfp/Customer.png" />
-  <div class="Frame88" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 12px; top: 391px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-    <div class="SignIn" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">user profile</div>  <a href="SignIn.html"><div class="MenuItem">Signin</div></a>
-  </div>
-  <div class="Frame98" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 17px; top: 468px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-    <div class="Catalogue" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Game</div> <a href="Catalog_page.html"><div class="MenuItem">Catalogue</div></a>
-  </div>
-  <div class="Frame99" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 17px; top: 545px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-    <div class="subscription" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Control</div>  <a href="subscription.html"><div class="MenuItem">Subscriptions</div></a>
-  </div>
-  <div class="Frame100" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 13px; top: 622px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-    <div class="Friends" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Contact</div> <a href="friendspage.html"><div class="MenuItem">Friends</div></a>
-  </div>
-  <div class="Frame101" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 13px; top: 699px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-    <div class="Settings" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Setup</div>   <a href="SignUp.html"><div class="MenuItem">Signup</div></a>
+  <div class="Frame88" style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 12px; top: 90px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+  <!-- Signin Button -->
+  <div class="Frame88" style="padding-left: 24px; padding-right: 24px; padding-top: 10px; padding-bottom: 16px; left: 12px; top: 390px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <a href="Sign_in_html.html" style="text-decoration: none;">
+        <div class="MenuItem" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Signin</div>
+      </a>
+    </div>
+    
+    <!-- Catalogue Button -->
+    <div class="Frame98" style="padding-left: 24px; padding-right: 24px; padding-top: 10px; padding-bottom: 16px; left: 17px; top: 440px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <a href="Catalog_page.html" style="text-decoration: none;">
+        <div class="Catalogue" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Catalogue</div>
+      </a>
+    </div>
+    
+    <!-- Subscriptions Button -->
+    <div class="Frame99" style="padding-left: 24px; padding-right: 24px; padding-top: 10px; padding-bottom: 16px; left: 17px; top: 490px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <a href="subscription.html" style="text-decoration: none;">
+        <div class="MenuItem" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Subscriptions</div>
+      </a>
+    </div>
+    
+    <!-- Friends Button -->
+    <div class="Frame100" style="padding-left: 24px; padding-right: 24px; padding-top: 10px; padding-bottom: 16px; left: 13px; top: 540px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <a href="friendspage.html" style="text-decoration: none;">
+        <div class="MenuItem" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Friends</div>
+      </a>
+    </div>
+    
+    <!-- Signup Button -->
+    <div class="Frame101" style="padding-left: 24px; padding-right: 24px; padding-top: 10px; padding-bottom: 16px; left: 13px; top: 590px; position: absolute; background: #08051E; border-radius: 12px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <a href="SignUp.html" style="text-decoration: none;">
+        <div class="MenuItem" style="color: white; font-size: 28px; font-family: Pavanam; font-weight: 400; line-height: 28px; word-wrap: break-word">Signup</div>
+      </a>
+    </div>
   </div>
   <div class="Frame100" style="width: 49px; height: 38px; left: 606px; top: 319px; position: absolute; background: black; justify-content: center; align-items: center; display: inline-flex">
     <img class="MembershipCard" style="width: 75px; height: 38px" src="picturespfp/Membership Card.png" />
   </div>
+ 
+   
+</a>
   <div class="Frame107" style="padding-top: 6px; padding-left: 20px; padding-right: 32px; left: 378px; top: 407px; position: absolute; background: #08051E; justify-content: flex-start; align-items: center; display: inline-flex">
-    <img class="ChatMessage" style="width: 60px; height: 60px" src="picturespfp/Frame 107.png" />
+   <a href="dm-profile.html" style="text-decoration: none;">
+  <img class="ChatMessage" style="width: 60px; height: 60px" src="picturespfp/Frame 107.png" />
   </div>
   <div class="Frame108" style="padding-top: 18px; padding-bottom: 5px; padding-left: 28px; padding-right: 36px; left: 458px; top: 394px; position: absolute; background: #07041D; justify-content: flex-start; align-items: center; display: inline-flex">
+    <a href="audio-profile.html" style="text-decoration: none;">
     <img class="Headset" style="width: 60px; height: 60px" src="picturespfp/Frame 108.png" />
   </div>
   <div class="GameVault" style="width: 348px; height: 91px; left: -9px; top: 24px; position: absolute; text-align: center; color: white; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; word-wrap: break-word">Game Vault</div>
@@ -93,7 +163,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@400;900&family=Pavanam&family=Righteous&display=swap" rel="stylesheet">
 </div>
 <nav>
-  <a href="profile_page.html" style="position: absolute; left: -9px; top: 24px; text-decoration: none;">
+  <a href="index.php" style="position: absolute; left: -9px; top: 24px; text-decoration: none;">
     <div class="GameVault" style="width: 348px; height: 91px; text-align: center; color: white; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; word-wrap: break-word;">
       Game Vault
     </div>
@@ -118,3 +188,6 @@
 </nav>
 </body>
 </html>
+<?php
+$conn->close();
+?> 

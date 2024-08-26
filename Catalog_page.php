@@ -1,6 +1,6 @@
-<html>
+<html> 
   <head>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
     <style type="text/css">
       /* Copyright 2014-present Evernote Corporation. All rights reserved. */
       @keyframes caretBlink {
@@ -190,19 +190,57 @@
     </style>
   </head>
   <body data-new-gr-c-s-check-loaded="14.1190.0" data-gr-ext-installed="">
-    <div
-      style="
+
+ <!-- Using PHP for backend here -->
+ <?php
+    // Defining a constant for the currency sign
+    define("CURRENCY", "€");
+
+// PHP code to connect to MySQL and fetch data
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "catalog_db";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+// SQL query to select data
+$sql = "SELECT * FROM `game_title`"; // The IDs for each game in the database. 
+$result = $conn->query($sql);
+
+$games = []; // Initialize an empty array for the game names and prices.
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $games[$row['ID']] = [  // Use the ID as the key for the outer array
+        'title' => $row['Game_Title'],  // Store the title in the inner associative array
+        'image_path' => $row['image_path'], // Store the image path in the inner associative array
+        'price' => $row['price']   // Store the price in the inner associative array
+    ];
+       
+    }
+} else {
+  echo "No games found.";
+}
+
+$conn->close();
+?>
+    <div style="
         width: 100%;
         height: 2500px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         display: inline-flex;
-      "
-    >
+      ">
       <div style="width: 100%; height: 2500px; position: relative">
-        <div
-          style="
+        <div style="
             width: 100%;
             height: 2500px;
             left: 0px;
@@ -211,20 +249,15 @@
             background: #210e0e;
 
             overflow: hidden;
-          "
-        >
-          <img
-            style="
+          ">
+          <img style="
               width: 100%;
               height: 2500px;
               left: 0px;
               top: 0px;
               position: absolute;
-            "
-            src="Catalog_images/unsplash_SIhcZYEwMB0.png"
-          />
-          <div
-            style="
+            " src="Catalog_images/unsplash_SIhcZYEwMB0.png">
+          <div style="
               width: 1344px;
               height: 1920px;
               left: 28px;
@@ -235,19 +268,15 @@
               align-items: flex-start;
               gap: 78px;
               display: inline-flex;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 align-self: stretch;
                 justify-content: flex-start;
                 align-items: flex-start;
                 gap: 7px;
                 display: inline-flex;
-              "
-            >
-              <div
-                style="
+              ">
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -260,10 +289,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -271,15 +298,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6.png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6.png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -287,31 +309,24 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
-                      € 69.99
-                    </div>
+                      ">
+                    € 69.99                    </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -319,12 +334,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
-                    Elden Ring
+                    ">
+                  ELDEN RING 
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -332,10 +345,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -344,21 +355,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Pre-order
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -367,15 +374,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -388,10 +393,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -399,15 +402,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (1).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (1).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 134px;
                     flex-direction: column;
@@ -415,31 +413,24 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
-                      € 69.99
-                    </div>
+                      ">
+                    € 69.99                    </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -447,12 +438,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
-                    Project Zero 20th Anniversary Celebration DLC
+                    ">
+                  Project Zero 20th Anniversary Celebration DLC 
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -460,10 +449,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -472,21 +459,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Game bundle
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -495,15 +478,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -516,10 +497,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -527,15 +506,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (2).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (2).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 134px;
                     flex-direction: column;
@@ -543,31 +517,24 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
-                      € 89.99
-                    </div>
+                      ">
+                    € 89.99                    </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -575,12 +542,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
-                    Tiny Tina's Wonderlands: Chaotic Great …
+                    ">
+                  Tiny Tina's Wonderlands: Chaotic Edition 
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -588,10 +553,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -600,21 +563,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Pre-order
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -623,15 +582,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -644,10 +601,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -655,15 +610,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (3).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (3).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 108px;
                     flex-direction: column;
@@ -671,31 +621,24 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
-                      € 99.99
-                    </div>
+                      ">
+                    € 99.99                    </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -703,12 +646,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
-                    Riders Republic™ Gold Edition
+                    ">
+                  Riders Republic™ Gold Edition 
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -716,10 +657,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -728,21 +667,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Game bundle
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -751,21 +686,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -774,15 +705,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -795,10 +724,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -806,15 +733,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (4).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (4).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -822,31 +744,24 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
-                      Free
-                    </div>
+                      ">
+                    FREE                    </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -854,12 +769,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
-                    eFootball™ 2022
+                    ">
+                  eFootball™ 2022 
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -867,10 +780,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -879,21 +790,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -902,15 +809,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -923,10 +828,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -934,15 +837,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (5).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (5).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -950,31 +848,24 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
-                      € 69.99
-                    </div>
+                      ">
+                    € 69.99                    </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -982,12 +873,9 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
-                    Saints Row
-                  </div>
-                  <div
-                    style="
+                    ">
+                  Saints Row                  </div>
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -995,10 +883,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1007,21 +893,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Pre-order
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1030,21 +912,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1053,24 +931,20 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div
-              style="
+            <div style="
                 justify-content: flex-start;
                 align-items: flex-start;
                 gap: 7px;
                 display: inline-flex;
-              "
-            >
-              <div
-                style="
+              ">
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -1083,10 +957,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -1094,15 +966,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (6).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (6).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -1110,31 +977,24 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
-                      € 79.99
-                    </div>
+                      ">
+                    € 79.99                    </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -1142,12 +1002,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
-                    Gran Turismo® 7
+                    ">
+                  Gran Turismo® 7 
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -1155,10 +1013,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1167,21 +1023,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Pre-order
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1190,15 +1042,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -1211,10 +1061,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -1222,15 +1070,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (7).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (7).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -1238,30 +1081,23 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
-                      € 49.99
-                    </div>
-                    <div
-                      style="
+                      ">
+                    € 49.99                    </div>
+                    <div style="
                         padding: 4px;
                         background: #fff9c6;
                         border-radius: 4px;
@@ -1269,14 +1105,9 @@
                         align-items: flex-start;
                         gap: 4px;
                         display: flex;
-                      "
-                    >
-                      <img
-                        style="width: 12px; height: 12px"
-                        src="https://via.placeholder.com/12x12"
-                      />
-                      <div
-                        style="
+                      ">
+                      <img style="width: 12px; height: 12px" src="https://via.placeholder.com/12x12">
+                      <div style="
                           color: #b5862f;
                           font-size: 12px;
                           font-family: Actor;
@@ -1284,14 +1115,12 @@
                           text-transform: uppercase;
                           line-height: 12px;
                           word-wrap: break-word;
-                        "
-                      >
+                        ">
                         10%
                       </div>
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -1299,12 +1128,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
-                    Sifu
+                    ">
+                  Sifu  
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -1312,10 +1139,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1324,21 +1149,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Pre-order
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1347,15 +1168,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -1368,10 +1187,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -1379,15 +1196,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (8).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (8).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 134px;
                     flex-direction: column;
@@ -1395,31 +1207,24 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
-                      € 89.99
-                    </div>
+                      ">
+                    € 89.99                    </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -1427,12 +1232,9 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
-                    Horizon Forbidden West™ Digital Deluxe Edition
-                  </div>
-                  <div
-                    style="
+                    ">
+                  Horizon Forbidden West™ Digital Deluxe Edition                  </div>
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -1440,10 +1242,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1452,21 +1252,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Pre-order
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1475,21 +1271,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1498,15 +1290,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -1519,10 +1309,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -1530,15 +1318,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (9).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (9).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 134px;
                     flex-direction: column;
@@ -1546,31 +1329,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 79.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -1578,12 +1355,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Marvel's Guardians of the Galaxy: Digital Deluxe Edition
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -1591,10 +1366,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1603,21 +1376,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PREMIUM EDITION
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1626,21 +1395,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1649,15 +1414,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -1670,10 +1433,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -1681,15 +1442,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (10).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (10).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 108px;
                     flex-direction: column;
@@ -1697,31 +1453,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 89.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -1729,12 +1479,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Elden Ring Deluxe Edition
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -1742,10 +1490,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1754,21 +1500,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Pre-order
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1777,15 +1519,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -1798,10 +1538,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -1809,15 +1547,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (11).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (11).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 108px;
                     flex-direction: column;
@@ -1825,40 +1558,30 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
+                    ">
                     <div>
-                      <span
-                        style="
+                      <span style="
                           color: black;
                           font-size: 16px;
                           font-family: Actor;
                           font-weight: 400;
                           line-height: 20px;
                           word-wrap: break-word;
-                        "
-                        >€19.99</span
-                      ><span
-                        style="
+                        ">€19.99</span><span style="
                           color: #91969b;
                           font-size: 16px;
                           font-family: Actor;
                           font-weight: 400;
                           line-height: 20px;
                           word-wrap: break-word;
-                        "
-                      >
-                      </span
-                      ><span
-                        style="
+                        ">
+                      </span><span style="
                           color: #91969b;
                           font-size: 16px;
                           font-family: Actor;
@@ -1866,12 +1589,9 @@
                           text-decoration: line-through;
                           line-height: 20px;
                           word-wrap: break-word;
-                        "
-                        >49.99</span
-                      >
+                        ">49.99</span>
                     </div>
-                    <div
-                      style="
+                    <div style="
                         padding: 4px;
                         background: #fff9c6;
                         border-radius: 4px;
@@ -1879,14 +1599,9 @@
                         align-items: flex-start;
                         gap: 4px;
                         display: flex;
-                      "
-                    >
-                      <img
-                        style="width: 12px; height: 12px"
-                        src="https://via.placeholder.com/12x12"
-                      />
-                      <div
-                        style="
+                      ">
+                      <img style="width: 12px; height: 12px" src="https://via.placeholder.com/12x12">
+                      <div style="
                           color: #b5862f;
                           font-size: 12px;
                           font-family: Actor;
@@ -1894,14 +1609,12 @@
                           text-transform: uppercase;
                           line-height: 12px;
                           word-wrap: break-word;
-                        "
-                      >
+                        ">
                         5%
                       </div>
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -1909,12 +1622,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Star Wars Jedi: Fallen Order™
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -1922,10 +1633,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1934,21 +1643,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -1957,24 +1662,20 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div
-              style="
+            <div style="
                 justify-content: flex-start;
                 align-items: flex-start;
                 gap: 7px;
                 display: inline-flex;
-              "
-            >
-              <div
-                style="
+              ">
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -1987,10 +1688,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -1998,15 +1697,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (12).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (12).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -2014,30 +1708,24 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 79.99
                     </div>
-                    <div
-                      style="
+                    <div style="
                         padding: 4px;
                         background: #ffe8e8;
                         border-radius: 4px;
@@ -2045,24 +1733,17 @@
                         align-items: flex-start;
                         gap: 4px;
                         display: flex;
-                      "
-                    >
-                      <div
-                        style="
+                      ">
+                      <div style="
                           width: 12px;
                           height: 12px;
                           justify-content: center;
                           align-items: center;
                           display: flex;
-                        "
-                      >
-                        <img
-                          style="width: 14px; height: 14px"
-                          src="https://via.placeholder.com/14x14"
-                        />
+                        ">
+                        <img style="width: 14px; height: 14px" src="https://via.placeholder.com/14x14">
                       </div>
-                      <div
-                        style="
+                      <div style="
                           color: #ff4747;
                           font-size: 12px;
                           font-family: Actor;
@@ -2070,14 +1751,12 @@
                           text-transform: uppercase;
                           line-height: 12px;
                           word-wrap: break-word;
-                        "
-                      >
+                        ">
                         10%
                       </div>
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -2085,12 +1764,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     FIFA 22 PS5™
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -2098,10 +1775,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2110,15 +1785,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -2131,10 +1804,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -2142,15 +1813,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (13).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (13).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -2158,31 +1824,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 69.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -2190,12 +1850,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Deathloop
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -2203,10 +1861,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2215,15 +1871,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -2236,10 +1890,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -2247,15 +1899,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (14).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (14).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 134px;
                     flex-direction: column;
@@ -2263,31 +1910,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 59.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -2295,12 +1936,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Grand Theft Auto: The Trilogy – The Definitive Edition
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -2308,10 +1947,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2320,21 +1957,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Pre-order
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2343,21 +1976,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2366,15 +1995,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -2387,10 +2014,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -2398,15 +2023,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (15).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (15).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 134px;
                     flex-direction: column;
@@ -2414,31 +2034,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 79.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -2446,12 +2060,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Call of Duty®: Vanguard — Cross-Gen Bundle
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -2459,10 +2071,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2471,21 +2081,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PREMIUM EDITION
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2494,21 +2100,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2517,15 +2119,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -2538,10 +2138,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -2549,15 +2147,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (16).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (16).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -2565,30 +2158,24 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 79.99
                     </div>
-                    <div
-                      style="
+                    <div style="
                         padding: 4px;
                         background: #fff9c6;
                         border-radius: 4px;
@@ -2596,28 +2183,21 @@
                         align-items: flex-start;
                         gap: 4px;
                         display: flex;
-                      "
-                    >
-                      <img
-                        style="width: 12px; height: 12px"
-                        src="https://via.placeholder.com/12x12"
-                      />
-                      <div
-                        style="
+                      ">
+                      <img style="width: 12px; height: 12px" src="https://via.placeholder.com/12x12">
+                      <div style="
                           color: #b5862f;
                           font-size: 12px;
                           font-family: Actor;
                           font-weight: 400;
                           line-height: 12px;
                           word-wrap: break-word;
-                        "
-                      >
+                        ">
                         Included
                       </div>
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -2625,12 +2205,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     First Class Trouble
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -2638,10 +2216,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2650,21 +2226,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2673,15 +2245,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -2694,10 +2264,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -2705,15 +2273,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (17).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (17).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -2721,31 +2284,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 69.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -2753,12 +2310,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Resident Evil Village
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -2766,10 +2321,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2778,21 +2331,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2801,24 +2350,20 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div
-              style="
+            <div style="
                 justify-content: flex-start;
                 align-items: flex-start;
                 gap: 7px;
                 display: inline-flex;
-              "
-            >
-              <div
-                style="
+              ">
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -2831,10 +2376,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -2842,15 +2385,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (18).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (18).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -2858,31 +2396,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 19.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -2890,12 +2422,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Death's Door
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -2903,10 +2433,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2915,21 +2443,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -2938,15 +2462,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -2959,10 +2481,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -2970,15 +2490,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (19).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (19).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -2986,31 +2501,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 59.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -3018,12 +2527,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Dying Light 2
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -3031,10 +2538,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -3043,21 +2548,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Pre-order
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -3066,21 +2567,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -3089,15 +2586,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -3110,10 +2605,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -3121,15 +2614,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (20).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (20).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 108px;
                     flex-direction: column;
@@ -3137,31 +2625,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 49.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -3169,12 +2651,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Deatch Stranding Director’s Cut
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -3182,10 +2662,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -3194,15 +2672,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -3215,10 +2691,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -3226,15 +2700,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (21).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (21).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 108px;
                     flex-direction: column;
@@ -3242,31 +2711,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 69.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -3274,12 +2737,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Ghost of Tsushima Director’s Cut
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -3287,10 +2748,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -3299,21 +2758,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       Game bundle
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -3322,21 +2777,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -3345,15 +2796,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -3366,10 +2815,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -3377,15 +2824,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (22).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (22).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 82px;
                     flex-direction: column;
@@ -3393,31 +2835,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 69.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -3425,12 +2861,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Demon's Souls
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -3438,10 +2872,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -3450,15 +2882,13 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                style="
+              <div style="
                   align-self: stretch;
                   padding-top: 12px;
                   padding-bottom: 20px;
@@ -3471,10 +2901,8 @@
                   align-items: flex-start;
                   gap: 16px;
                   display: inline-flex;
-                "
-              >
-                <div
-                  style="
+                ">
+                <div style="
                     width: 200px;
                     height: 200px;
                     border-radius: 16px;
@@ -3482,15 +2910,10 @@
                     justify-content: center;
                     align-items: center;
                     display: inline-flex;
-                  "
-                >
-                  <img
-                    style="width: 200px; height: 200px"
-                    src="Catalog_images/image 6 (23).png"
-                  />
+                  ">
+                  <img style="width: 200px; height: 200px" src="Catalog_images/image 6 (23).png">
                 </div>
-                <div
-                  style="
+                <div style="
                     align-self: stretch;
                     height: 108px;
                     flex-direction: column;
@@ -3498,31 +2921,25 @@
                     align-items: flex-start;
                     gap: 8px;
                     display: flex;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                  <div style="
                       justify-content: flex-start;
                       align-items: center;
                       gap: 10px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         color: black;
                         font-size: 16px;
                         font-family: Actor;
                         font-weight: 400;
                         line-height: 20px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       € 49.99
                     </div>
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       color: black;
                       font-size: 20px;
@@ -3530,12 +2947,10 @@
                       font-weight: 400;
                       line-height: 26px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Marvel's Spider-Man: Miles Morales
                   </div>
-                  <div
-                    style="
+                  <div style="
                       align-self: stretch;
                       padding-top: 2px;
                       padding-bottom: 2px;
@@ -3543,10 +2958,8 @@
                       align-items: center;
                       gap: 8px;
                       display: inline-flex;
-                    "
-                  >
-                    <div
-                      style="
+                    ">
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -3555,21 +2968,17 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS5
                     </div>
-                    <div
-                      style="
+                    <div style="
                         width: 2px;
                         height: 2px;
                         opacity: 0.4;
                         background: black;
                         border-radius: 9999px;
-                      "
-                    ></div>
-                    <div
-                      style="
+                      "></div>
+                    <div style="
                         opacity: 0.4;
                         color: black;
                         font-size: 12px;
@@ -3578,8 +2987,7 @@
                         text-transform: uppercase;
                         line-height: 16px;
                         word-wrap: break-word;
-                      "
-                    >
+                      ">
                       PS4
                     </div>
                   </div>
@@ -3587,18 +2995,15 @@
               </div>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 1352px;
               height: 91px;
               left: 28px;
               top: 0px;
               position: absolute;
               background: black;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 left: 224px;
                 top: 35px;
                 position: absolute;
@@ -3606,10 +3011,8 @@
                 align-items: flex-start;
                 gap: 8px;
                 display: inline-flex;
-              "
-            >
-              <div
-                style="
+              ">
+              <div style="
                   padding: 12px;
                   background: black;
                   border-radius: 8px;
@@ -3617,25 +3020,21 @@
                   align-items: flex-start;
                   gap: 10px;
                   display: flex;
-                "
-              >
+                ">
                 <a href="friendspage.html" style="text-decoration: none">
-                  <div
-                    style="
+                  <div style="
                       color: #91969b;
                       font-size: 16px;
                       font-family: Actor;
                       font-weight: 400;
                       line-height: 16px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     Friends
                   </div>
                 </a>
               </div>
-              <div
-                style="
+              <div style="
                   padding: 12px;
                   background: black;
                   border-radius: 8px;
@@ -3643,25 +3042,21 @@
                   align-items: flex-start;
                   gap: 10px;
                   display: flex;
-                "
-              >
+                ">
                 <a href="cart_page.html" style="text-decoration: none">
-                  <div
-                    style="
+                  <div style="
                       color: #91969b;
                       font-size: 16px;
                       font-family: Actor;
                       font-weight: 400;
                       line-height: 16px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     View Cart
                   </div>
                 </a>
               </div>
-              <div
-                style="
+              <div style="
                   padding: 12px;
                   background: black;
                   border-radius: 8px;
@@ -3669,25 +3064,21 @@
                   align-items: flex-start;
                   gap: 10px;
                   display: flex;
-                "
-              >
-                <a href="profile_page.html" style="text-decoration: none">
-                  <div
-                    style="
+                ">
+                <a href="profile_page.php" style="text-decoration: none">
+                  <div style="
                       color: #91969b;
                       font-size: 16px;
                       font-family: Actor;
                       font-weight: 400;
                       line-height: 16px;
                       word-wrap: break-word;
-                    "
-                  >
+                    ">
                     My Profile
                   </div>
                 </a>
               </div>
-              <div
-                style="
+              <div style="
                   padding: 12px;
                   background: black;
                   border-radius: 8px;
@@ -3695,24 +3086,20 @@
                   align-items: flex-start;
                   gap: 10px;
                   display: flex;
-                "
-              >
-              <a href="homepage.html" style="text-decoration: none">
-                <div
-                  style="
+                ">
+              <a href="homepage.php" style="text-decoration: none">
+                <div style="
                     color: #91969b;
                     font-size: 16px;
                     font-family: Actor;
                     font-weight: 400;
                     line-height: 16px;
                     word-wrap: break-word;
-                  "
-                >
+                  ">
                 Home Page
                 </div>
-              </div>
-              <div
-                style="
+              </a></div><a href="homepage.php" style="text-decoration: none">
+              </a><div style="
                   padding: 12px;
                   background: black;
                   border-radius: 8px;
@@ -3720,25 +3107,21 @@
                   align-items: flex-start;
                   gap: 10px;
                   display: flex;
-                "
-              >
-              <a href="subscription.html" style="text-decoration: none">
-                <div
-                  style="
+                "><a href="homepage.php" style="text-decoration: none">
+              </a><a href="subscription.html" style="text-decoration: none">
+                <div style="
                     color: #91969b;
                     font-size: 16px;
                     font-family: Actor;
                     font-weight: 400;
                     line-height: 16px;
                     word-wrap: break-word;
-                  "
-                >
+                  ">
                   My Subscriptions
                 </div>
                 </a>
               </div>
-              <div
-                style="
+              <div style="
                   padding: 12px;
                   background: black;
                   border-radius: 8px;
@@ -3746,13 +3129,11 @@
                   align-items: flex-start;
                   gap: 10px;
                   display: flex;
-                "
-              >
+                ">
 
               </div>
             </div>
-            <div
-              style="
+            <div style="
                 width: 317px;
                 height: 40px;
                 padding-left: 12px;
@@ -3768,30 +3149,26 @@
                 align-items: center;
                 gap: 10px;
                 display: inline-flex;
-              "
-            >
-              <div
-                style="
+              ">
+              <div style="
                   width: 24px;
                   height: 24px;
                   padding: 2px;
                   justify-content: center;
                   align-items: center;
                   display: flex;
-                "
-              >
-                <div
-                  style="
+                  
+                ">
+                <div style="
                     width: 20px;
                     height: 20px;
                     transform: rotate(180deg);
                     transform-origin: 0 0;
                     background: #91969b;
-                  "
-                ></div>
+                    
+                  "></div>
               </div>
-              <input
-                style="
+              <input style="
                   border: none;
                   outline: none;
                   background-color: #f4f7fa;
@@ -3801,26 +3178,19 @@
                   font-weight: 400;
                   line-height: 16px;
                   width: 100%;
-                "
-                type="text"
-                placeholder="Search"
-              />
+                " type="text" placeholder="Search">
             </div>
             <a href="homepage.html" style="text-decoration: none">
-              <img
-                style="
+              <img style="
                   width: 101px;
                   height: 91px;
                   left: 0px;
                   top: 0px;
                   position: absolute;
                   border-radius: 0px;
-                "
-                src="Catalog_images/store-icon 1.png"
-              />
+                " src="Catalog_images/store-icon 1.png">
             </a>
-            <div
-              style="
+            <div style="
                 width: 214px;
                 height: 65px;
                 padding-top: 7px;
@@ -3836,17 +3206,12 @@
                 align-items: center;
                 gap: 9px;
                 display: inline-flex;
-              "
-            >
-            <a href="SignIn.html" style="text-decoration: none;">
-              <img
-                style="width: 43px; height: 41px; border-radius: 50%"
-                src="Catalog_images/Rectangle 17.png"
-              />
+              ">
+            <a href="Sign_in_html.php" style="text-decoration: none;">
+              <img style="width: 43px; height: 41px; border-radius: 50%" src="Catalog_images/Rectangle 17.png">
             </a>
-            <a href="profile_page.html" style="text-decoration: none;">
-              <div
-                style="
+            <a href="profile_page.php" style="text-decoration: none;">
+              <div style="
                   width: 80px;
                   height: 27px;
                   text-align: right;
@@ -3856,73 +3221,59 @@
                   font-weight: 400;
                   line-height: 16px;
                   word-wrap: break-word;
-                "
-              >
-                CoolGamer<br />
+                ">
+                CoolGamer<br>
               </div>
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 1304px;
               height: 224px;
               left: 52px;
               top: 2208px;
               position: absolute;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 24px;
                 height: 24px;
                 left: 0px;
                 top: 196px;
                 position: absolute;
-              "
-            >
-              <div
-                style="
+              ">
+              <div style="
                   width: 24px;
                   height: 24px;
                   left: 0px;
                   top: 0px;
                   position: absolute;
-                "
-              ></div>
-              <div
-                style="
+                "></div>
+              <div style="
                   width: 18px;
                   height: 18px;
                   left: 3px;
                   top: 3px;
                   position: absolute;
                   border: 2px white solid;
-                "
-              ></div>
-              <div
-                style="
+                "></div>
+              <div style="
                   width: 12.59px;
                   height: 12.59px;
                   left: 4.65px;
                   top: 4.6px;
                   position: absolute;
                   border: 2px white solid;
-                "
-              ></div>
-              <div
-                style="
+                "></div>
+              <div style="
                   width: 6.67px;
                   height: 5.91px;
                   left: 13.62px;
                   top: 13.18px;
                   position: absolute;
                   border: 2px white solid;
-                "
-              ></div>
+                "></div>
             </div>
-            <div
-              style="
+            <div style="
                 left: 704px;
                 top: 0px;
                 position: absolute;
@@ -3932,13 +3283,11 @@
                 font-weight: 400;
                 line-height: 32px;
                 word-wrap: break-word;
-              "
-            >
-              Support <br />Privacy and Cookies <br />Website Terms of Use
-              <br />Sitemap <br />GameVault Studios <br />Legal <br />About GVE
+              ">
+              Support <br>Privacy and Cookies <br>Website Terms of Use
+              <br>Sitemap <br>GameVault Studios <br>Legal <br>About GVE
             </div>
-            <div
-              style="
+            <div style="
                 left: 934px;
                 top: 0px;
                 position: absolute;
@@ -3948,13 +3297,11 @@
                 font-weight: 400;
                 line-height: 32px;
                 word-wrap: break-word;
-              "
-            >
-              GVN Terms of Service <br />Software Usage Terms <br />GV Store
-              Cancellation Policy <br />Health Warnings <br />About Ratings
+              ">
+              GVN Terms of Service <br>Software Usage Terms <br>GV Store
+              Cancellation Policy <br>Health Warnings <br>About Ratings
             </div>
-            <div
-              style="
+            <div style="
                 left: 1215px;
                 top: 0px;
                 position: absolute;
@@ -3964,13 +3311,11 @@
                 font-weight: 400;
                 line-height: 32px;
                 word-wrap: break-word;
-              "
-            >
-              Facebook <br />Twitter <br />YouTube <br />Instagram <br />Android
-              App <br />iOS App
+              ">
+              Facebook <br>Twitter <br>YouTube <br>Instagram <br>Android
+              App <br>iOS App
             </div>
-            <div
-              style="
+            <div style="
                 left: 36px;
                 top: 200px;
                 position: absolute;
@@ -3980,12 +3325,10 @@
                 font-weight: 400;
                 line-height: 16px;
                 word-wrap: break-word;
-              "
-            >
+              ">
               Country/Region: Ireland
             </div>
-            <div
-              style="
+            <div style="
                 width: 16px;
                 height: 16px;
                 padding-left: 3.33px;
@@ -4000,42 +3343,33 @@
                 justify-content: center;
                 align-items: center;
                 display: inline-flex;
-              "
-            >
-              <div
-                style="
+              ">
+              <div style="
                   width: 5.33px;
                   height: 9.33px;
                   transform: rotate(90deg);
                   transform-origin: 0 0;
                   background: white;
-                "
-              ></div>
+                "></div>
             </div>
-            <div
-              style="
+            <div style="
                 width: 83.34px;
                 height: 64px;
                 left: 0px;
                 top: 0px;
                 position: absolute;
                 background: white;
-              "
-            ></div>
-            <img
-              style="
+              "></div>
+            <img style="
                 width: 167px;
                 height: 160px;
                 left: 0px;
                 top: 0px;
                 position: absolute;
                 border-radius: 0px;
-              "
-              src="Catalog_images/store-icon 1 (1).png"
-            />
+              " src="Catalog_images/store-icon 1 (1).png">
           </div>
-          <div
-            style="
+          <div style="
               width: 983px;
               height: 55px;
               left: 212px;
@@ -4047,33 +3381,27 @@
               font-family: Advent Pro;
               font-weight: 400;
               word-wrap: break-word;
-            "
-          >
+            ">
             Discover your next adventure in the vault—where every game is a
             treasure waiting to be unlocked!
           </div>
         </div>
-        <div
-          style="
+        <div style="
             width: 1293px;
             height: 1409px;
             left: 67px;
             top: 762px;
             position: absolute;
-          "
-        >
-          <div
-            style="
+          ">
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 0px;
               top: 0px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4081,41 +3409,38 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <a href="GameInfoPage_Overwatch.html" style="
-              display: inline-block;
-              width: 100%;
-              height: 43px;
-              text-align: center;
-              background-color: black;
-              color: #ffffff;
-              font-size: 16px;
-              font-family: Inter, sans-serif;
-              font-weight: 400;
-              line-height: 43px; /* Center the text vertically */
-              text-decoration: none;
-              border-radius: 8px;
-              cursor: pointer;
-              position: absolute;
-              top: 0;
-              left: 0;
-            ">
-              View
-            </a>
+              "></div> <!-- For ELDEN RING -->
+            <form method="POST" action="add_to_cart.php" style="position: absolute; top: 0; left: 0; width: 100%;">
+    <input type="hidden" name="game_id" value="9">
+    <button type="submit" name="add_to_cart" style="
+        display: inline-block;
+        width: 100%;
+        height: 43px;
+        text-align: center;
+        background-color: black;
+        color: #ffffff;
+        font-size: 16px;
+        font-family: Inter, sans-serif;
+        font-weight: 400;
+        line-height: 43px; /* Center the text vertically */
+        text-decoration: none;
+        border-radius: 8px;
+        cursor: pointer;
+        border: none; /* Remove default button borders */
+    ">
+        View
+    </button>
+</form>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 456px;
               top: 0px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4123,41 +3448,38 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <a href="GameInfoPage_Overwatch.html" style="
-              display: inline-block;
-              width: 122px;
-              height: 43px;
-              text-align: center;
-              background-color: black;
-              color: #ffffff;
-              font-size: 16px;
-              font-family: Inter, sans-serif;
-              font-weight: 400;
-              line-height: 43px; /* Center the text vertically */
-              text-decoration: none;
-              border-radius: 8px;
-              cursor: pointer;
-              position: absolute;
-              top: 0;
-              left: 0;
-            ">
-              View
-            </a>
+              "></div> <!-- For Tiny Tina's Wonderland -->
+            <form method="POST" action="add_to_cart.php" style="position: absolute; top: 0; left: 0; width: 100%;">
+    <input type="hidden" name="game_id" value="9">
+    <button type="submit" name="add_to_cart" style="
+        display: inline-block;
+        width: 100%;
+        height: 43px;
+        text-align: center;
+        background-color: black;
+        color: #ffffff;
+        font-size: 16px;
+        font-family: Inter, sans-serif;
+        font-weight: 400;
+        line-height: 43px; /* Center the text vertically */
+        text-decoration: none;
+        border-radius: 8px;
+        cursor: pointer;
+        border: none; /* Remove default button borders */
+    ">
+        View
+    </button>
+</form>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 684px;
               top: 0px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4165,41 +3487,38 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <a href="GameInfoPage_Overwatch.html" style="
-              display: inline-block;
-              width: 122px;
-              height: 43px;
-              text-align: center;
-              background-color: black;
-              color: #ffffff;
-              font-size: 16px;
-              font-family: Inter, sans-serif;
-              font-weight: 400;
-              line-height: 43px; /* Center the text vertically */
-              text-decoration: none;
-              border-radius: 8px;
-              cursor: pointer;
-              position: absolute;
-              top: 0;
-              left: 0;
-            ">
-              View
-            </a>
+              "></div> <!-- Rider's Republic -->
+            <form method="POST" action="add_to_cart.php" style="position: absolute; top: 0; left: 0; width: 100%;">
+    <input type="hidden" name="game_id" value="9">
+    <button type="submit" name="add_to_cart" style="
+        display: inline-block;
+        width: 100%;
+        height: 43px;
+        text-align: center;
+        background-color: black;
+        color: #ffffff;
+        font-size: 16px;
+        font-family: Inter, sans-serif;
+        font-weight: 400;
+        line-height: 43px; /* Center the text vertically */
+        text-decoration: none;
+        border-radius: 8px;
+        cursor: pointer;
+        border: none; /* Remove default button borders */
+    ">
+        View
+    </button>
+</form>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 1171px;
               top: 0px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4207,10 +3526,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4222,8 +3539,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4247,18 +3563,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 928px;
               top: 0px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4266,8 +3579,7 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
+              "></div>
             <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
               width: 122px;
@@ -4289,18 +3601,15 @@
               View
             </a>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 228px;
               top: 0px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4308,41 +3617,39 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <a href="GameInfoPage_Overwatch.html" style="
-              display: inline-block;
-              width: 122px;
-              height: 43px;
-              text-align: center;
-              background-color: black;
-              color: #ffffff;
-              font-size: 16px;
-              font-family: Inter, sans-serif;
-              font-weight: 400;
-              line-height: 43px; /* Center the text vertically */
-              text-decoration: none;
-              border-radius: 8px;
-              cursor: pointer;
-              position: absolute;
-              top: 0;
-              left: 0;
-            ">
-              View
-            </a>
+              "></div>  <!-- PROJECT ZERO -->
+            <form method="POST" action="add_to_cart.php" style="position: absolute; top: 0; left: 0; width: 100%;">
+    <input type="hidden" name="game_id" value="<?php echo $game_id; ?>">
+    <button type="submit" name="add_to_cart" style="
+        display: inline-block;
+        width: 100%;
+        height: 43px;
+        text-align: center;
+        background-color: black;
+        color: #ffffff;
+        font-size: 16px;
+        font-family: Inter, sans-serif;
+        font-weight: 400;
+        line-height: 43px; /* Center the text vertically */
+        text-decoration: none;
+        border-radius: 8px;
+        cursor: pointer;
+        border: none; /* Remove default button borders */
+    ">
+        View
+    </button>
+</form>
+
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 0px;
               top: 925.6px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4350,10 +3657,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4365,8 +3670,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4390,18 +3694,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 456px;
               top: 925.6px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4409,10 +3710,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4424,8 +3723,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4449,18 +3747,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 684px;
               top: 925.6px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4468,10 +3763,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4483,8 +3776,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4508,18 +3800,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 1171px;
               top: 925.6px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4527,10 +3816,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4542,8 +3829,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4567,18 +3853,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 928px;
               top: 925.6px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4586,10 +3869,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4601,8 +3882,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4626,18 +3906,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 228px;
               top: 925.6px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4645,10 +3922,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4660,8 +3935,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4685,18 +3959,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 0px;
               top: 1365.79px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4704,10 +3975,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4719,8 +3988,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4744,18 +4012,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 456px;
               top: 1365.79px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4763,10 +4028,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4778,8 +4041,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4803,18 +4065,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 684px;
               top: 1365.79px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4822,10 +4081,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4837,8 +4094,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4862,18 +4118,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 1171px;
               top: 1365.79px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4881,10 +4134,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4896,8 +4147,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4921,18 +4171,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 928px;
               top: 1365.79px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4940,10 +4187,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -4955,8 +4200,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -4978,21 +4222,18 @@
             ">
               View
             </a>
-              </button>
+              
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 228px;
               top: 1365.79px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5000,10 +4241,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5015,8 +4254,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -5040,18 +4278,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 0px;
               top: 462.3px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5059,10 +4294,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5074,8 +4307,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -5099,18 +4331,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 456px;
               top: 462.3px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5118,10 +4347,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5133,8 +4360,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -5158,18 +4384,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 684px;
               top: 462.3px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5177,10 +4400,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5192,8 +4413,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -5217,18 +4437,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 1171px;
               top: 462.3px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5236,10 +4453,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5251,8 +4466,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -5276,18 +4490,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 928px;
               top: 462.3px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5295,10 +4506,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5310,8 +4519,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -5335,18 +4543,15 @@
             </a>
             </div>
           </div>
-          <div
-            style="
+          <div style="
               width: 122px;
               height: 43.21px;
               left: 228px;
               top: 462.3px;
               position: absolute;
               border-radius: 200px;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5354,10 +4559,8 @@
                 position: absolute;
                 background: black;
                 border-radius: 20px;
-              "
-            ></div>
-            <div
-              style="
+              "></div>
+            <div style="
                 width: 122px;
                 height: 43px;
                 left: 0px;
@@ -5369,8 +4572,7 @@
                 font-family: Inter;
                 font-weight: 400;
                 word-wrap: break-word;
-              "
-            >
+              ">
               View
               <a href="GameInfoPage_Overwatch.html" style="
               display: inline-block;
@@ -5397,8 +4599,7 @@
         </div>
       </div>
     </div>
-  </body>
-  <grammarly-desktop-integration
-    data-grammarly-shadow-root="true"
-  ></grammarly-desktop-integration>
-</html>
+  
+  <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+</body></html>

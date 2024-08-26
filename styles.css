@@ -11,7 +11,7 @@ body, html {
     height: 100%;
   }
     .HomePage {
-      width: 100%;
+    width: 100%;
     height: 2500px;
     position: relative;
     background-image: url('Backgrounds/HomePage-BackGround.png'); /* Path to your image */
@@ -19,6 +19,7 @@ body, html {
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     }
+ 
     .MenuButtons {
       position: absolute;
       left: 87px;
@@ -47,10 +48,10 @@ body, html {
       word-wrap: break-word;
       text-align: center;
   }
-  .Frame39 {
+  .Searchbox {
     width: 537px;
     padding: 8px 12px;
-    left: 1300px;
+    left: 1290px;
     top: 27px;
     position: absolute;
     background: #F4F7FA;
@@ -61,7 +62,7 @@ body, html {
     gap: 10px;
 }
 
-.InterfaceInterface5224px {
+.Search {
     width: 24px;
     height: 24px;
     padding: 2px;
@@ -123,4 +124,24 @@ body, html {
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     position: relative; /* Needed to position the overlay correctly */
+  }
+  /*  Subsription page  */
+  .NoorSSubscriptionPage {
+    width: 100%;
+  height: 1024px;
+  position: relative;
+  background-image: url('Backgrounds/suback.png'); /* Path to your image */
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  }
+  /*   Friends page     */
+  .FriendsPageMichel{
+    width: 100%;
+    height: 919px;
+    position: relative;
+    background-image: url('Backgrounds/suback.png'); /* Path to your image */
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
   }
