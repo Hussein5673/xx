@@ -33,13 +33,13 @@ steps:
 - script: |
     mkdir -p $(Build.ArtifactStagingDirectory)
     cd $(Build.SourcesDirectory)
-    zip -r $(Build.ArtifactStagingDirectory)/output.zip .
+    zip -r $(Build.ArtifactStagingDirectory)/ .
   displayName: 'Package All Files into ZIP'
 
 # 7. Publish the ZIP file as an artifact
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/output.zip'
+    targetPath: '$(Build.ArtifactStagingDirectory)/'
     artifactName: 'all-files-package'
     publishLocation: 'pipeline'
   displayName: 'Publish ZIP Artifact'
