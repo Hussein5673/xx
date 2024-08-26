@@ -252,4 +252,10 @@ if (!empty($cart_items)) {
     <nav class="navigation">
         <div class="nav-item"><a href="index.php">Home</a></div>
         <div class="nav-item"><a href="Catalog_page.php">Catalogue</a></div>
-        <div class="nav-item"><a href="
+        <div class="nav-item"><a href="Sign_in_html.php">Signin</a></div>
+        <div class="nav-item"><a href="SignUp.html">Signup</a></div>
+        <div class="nav-item"><a href="friendspage.html">Friends</a></div>
+        <div class="nav-item"><a href="subscription.html">Subscriptions</a></div>
+    </nav>
+</body>
+</html>
