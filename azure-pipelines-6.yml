@@ -8,11 +8,6 @@ steps:
     versionSpec: '18.x'
   displayName: 'Install Node.js'
 
-# 2. List files in the working directory (for debugging)
-- script: |
-    echo "Listing all files in the working directory:"
-    ls -R
-  displayName: 'List files'
 
 # 3. HTML syntax check using HTMLHint
 - script: |
@@ -29,7 +24,7 @@ steps:
       }
     }' > .stylelintrc.json
     echo "Running Stylelint for CSS files:"
-    npx stylelint "**/*.css"
+    npx stylelint "*.css"
   displayName: 'CSS Syntax Check'
 
 # 5. PHP syntax check using PHP linter
@@ -54,17 +49,6 @@ steps:
     publishLocation: 'pipeline'
   displayName: 'Publish ZIP Artifact'
 
-# 8. List Artifacts Directory for Debugging
-- script: |
-    echo "Checking contents of artifact directory:"
-    ls -R $(Pipeline.Workspace)/a
-  displayName: 'List Artifacts Directory'
-
-# 9. Debug step to verify contents of Build.ArtifactStagingDirectory
-- script: |
-    echo "Checking contents of Build.ArtifactStagingDirectory:"
-    ls -R $(Build.ArtifactStagingDirectory)
-  displayName: 'List Build Artifact Staging Directory'
   
 # 10. Deploy the ZIP file to Azure Web App
 - task: AzureWebApp@1
