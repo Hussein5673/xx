@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-// Include the database name username password
+// Include the database name, username, password, and server details
 include 'username_database_password_server.php';
 
-// Establish the connection
+// Establish the connection using sqlsrv
 $conn = sqlsrv_connect($serverName, $connectionOptions);
 
 // Check connection
@@ -20,29 +20,31 @@ $total_cost = 0;
 // Prepare an array to store game details
 $games = [];
 
-// Fetch game details for items in the cart
 if (!empty($cart_items)) {
     // Ensure no duplicates in cart items
     $cart_items = array_unique($cart_items);
-    
-    // Create placeholders for the SQL query
+
+    // Prepare placeholders for the SQL query
     $placeholders = implode(',', array_fill(0, count($cart_items), '?'));
-    
+
     // Prepare the SQL statement
     $sql = "SELECT ID, Game_Title, price, image FROM game_title WHERE ID IN ($placeholders)";
-    $stmt = $pdo->prepare($sql);
-    
-    // Execute the statement with the cart items
-    $stmt->execute($cart_items);
-    
-    // Fetch all the results
-    $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = sqlsrv_query($conn, $sql, $cart_items);
 
-    // Calculate total cost
-    foreach ($games as $game) {
-        $total_cost += $game['price'];
+    // Check if the query was successful
+    if ($stmt === false) {
+        die(print_r(sqlsrv_errors(), true));
+    }
+
+    // Fetch all the results
+    while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+        $games[] = $row;
+        $total_cost += $row['price'];
     }
 }
+
+// Close the connection
+sqlsrv_close($conn);
 ?>
 
 <!DOCTYPE html>
