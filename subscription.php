@@ -98,7 +98,7 @@ sqlsrv_close($conn);
     </div>
     <div class="GameVault" style="width: 360px; height: 70px; left: 30px; top: 12px; position: absolute; text-align: center; color: black; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; word-wrap: break-word">Game Vault</div>
   </div>
-  <h1 style="color: white;left:400px ;top:250px ;position: absolute;">Choose Your Subscription</h1>
+  <h1 style="color: white;left:400px ;top:250px ;position: absolute;">Choose the tier of Subscription</h1>
   <div class="Subscriptions" style="width: 1091px; height: 382px; position: relative">
     <div class="Subscriptions" style="width: 1091px; height: 382px; left: 474px; top: 333px; position: absolute">
         <a href="subscription.php?tier=Gold"><div class="Card" style="width: 328px; height: 382px; padding-top: 12px; padding-bottom: 20px; padding-left: 12px; padding-right: 12px; left: 0px; top: 0px; position: absolute; background: #52A1CA; border-radius: 20px; flex-direction: column; justify-content: center; align-items: center; gap: 16px; display: inline-flex">
