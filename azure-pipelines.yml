@@ -1,5 +1,5 @@
 trigger:
-- Development
+- main
 
 steps:
 # 1. Install Node.js
@@ -24,7 +24,7 @@ steps:
       }
     }' > .stylelintrc.json
     echo "Running Stylelint for CSS files:"
-    npx stylelint "**/*.css"
+    npx stylelint "*.css"
   displayName: 'CSS Syntax Check'
 
 # 5. PHP syntax check using PHP linter
@@ -48,6 +48,4 @@ steps:
     artifactName: 'all-files-package'
     publishLocation: 'pipeline'
   displayName: 'Publish ZIP Artifact'
-
-  
 
