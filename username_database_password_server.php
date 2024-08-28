@@ -1,4 +1,5 @@
 <?php
+//username_database_password file
 // Connection details
 $serverName = "dbservergamevault.database.windows.net";
 $connectionOptions = array(
