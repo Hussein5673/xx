@@ -1,5 +1,14 @@
 <?php
+
 session_start(); // Start the session at the beginning
+
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+    $username = $_SESSION['username'];
+    
+} else {
+    // Handle the case where the user is not logged in
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +31,7 @@ session_start(); // Start the session at the beginning
     </div>
     <input type="text" class="SearchInput" placeholder="Search">
 </div>
-<div class="WelcomeToGameVaultFeelFreeToBrowseThroughOurLatestCollectionOfGames" style="width: 856px; height: 278px; left: 300px; top: 253px; position: absolute; color: white; font-size: 57px; font-family: Roboto; font-weight: 400; line-height: 64px; word-wrap: break-word">Welcome To Game Vault<br/><br/>Feel free to browse through our latest collection of games</div>
+<div class="WelcomeToGameVaultFeelFreeToBrowseThroughOurLatestCollectionOfGames" style="width: 856px; height: 278px; left: 300px; top: 253px; position: absolute; color: white; font-size: 57px; font-family: Roboto; font-weight: 400; line-height: 64px; word-wrap: break-word">Welcome <?php echo $username?><br/><br/>Feel free to browse through our latest collection of games</div>
     <nav>
     <a href=""><div class="GameVault" style="width: 348px; height: 70px; left: 56px; top: 14px; position: absolute; text-align: center; color: white; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; word-wrap: break-word">Game Vault</div></a>
   </div>  

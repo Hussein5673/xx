@@ -1,6 +1,7 @@
 <?php
 session_start(); // Start the session at the beginning
 
+
 // Include the database name username password
 include 'username_database_password_server.php';
 

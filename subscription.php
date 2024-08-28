@@ -1,4 +1,6 @@
 <?php
+//started the session
+session_start();
 // Include the database connection details
 include 'username_database_password_server.php';
 
