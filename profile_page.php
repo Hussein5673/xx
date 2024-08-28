@@ -8,7 +8,7 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
 if ($conn === false) {
     die(print_r(sqlsrv_errors(), true));
 }
-$result = $conn->query($sql);
+$result = $conn->sqlsrv_query($sql);
 
 // Default value for Friends as an empty string
     $defaultFriendsValue = '';
