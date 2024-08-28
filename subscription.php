@@ -1,6 +1,13 @@
 <?php
 //started the session
 session_start();
+
+
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+    $username = $_SESSION['username'];
+    // You can now use $username in your script
+}
+
 // Include the database connection details
 include 'username_database_password_server.php';
 
