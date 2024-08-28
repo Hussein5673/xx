@@ -180,9 +180,9 @@ sqlsrv_close($conn);
 <body>
 <div class="FriendsPageMichel">
   
-  <div class="GameVault">
-  <a href="index.php">Game Vault</a>
-  </div>
+<a href="index.php"><div class="GameVault">
+  Game Vault
+  </div></a>
   
   <div class="FriendsPage">
     FRIENDS PAGE
