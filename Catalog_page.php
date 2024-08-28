@@ -228,7 +228,7 @@
     }
 
     // Close the connection
-    sqlsrv_close($conn);
+    sqlsrv_close($conn);  
 ?>
 
     <div style="
@@ -2996,7 +2996,7 @@
             </div>
           </div>
           <div style="
-              width: 1352px;
+              width: 100%;
               height: 91px;
               left: 28px;
               top: 0px;
@@ -3133,53 +3133,15 @@
 
               </div>
             </div>
-            <div style="
-                width: 317px;
-                height: 40px;
-                padding-left: 12px;
-                padding-right: 12px;
-                padding-top: 8px;
-                padding-bottom: 8px;
-                left: 799px;
-                top: 35px;
-                position: absolute;
-                background: #f4f7fa;
-                border-radius: 8px;
-                justify-content: flex-start;
-                align-items: center;
-                gap: 10px;
-                display: inline-flex;
-              ">
-              <div style="
-                  width: 24px;
-                  height: 24px;
-                  padding: 2px;
-                  justify-content: center;
-                  align-items: center;
-                  display: flex;
-                  
-                ">
-                <div style="
-                    width: 20px;
-                    height: 20px;
-                    transform: rotate(180deg);
-                    transform-origin: 0 0;
-                    background: #91969b;
-                    
-                  "></div>
-              </div>
-              <input style="
-                  border: none;
-                  outline: none;
-                  background-color: #f4f7fa;
-                  color: #91969b;
-                  font-size: 16px;
-                  font-family: Actor, sans-serif;
-                  font-weight: 400;
-                  line-height: 16px;
-                  width: 100%;
-                " type="text" placeholder="Search">
             </div>
+  <div class="Searchbox">
+    <div class="Search">
+        <div class="Icon">
+            <img src="Icons/Icon.png" alt="Icon Image">
+        </div>
+    </div>
+    <input type="text" class="SearchInput" placeholder="Search">
+</div>
             <a href="homepage.html" style="text-decoration: none">
               <img style="
                   width: 101px;
