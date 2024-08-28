@@ -228,10 +228,10 @@ sqlsrv_close($conn);
             <?php if (!empty($cart_items) && !empty($games)): ?>
                 <?php foreach ($games as $game): ?>
                     <div class="product">
-                        <img src="<?php echo htmlspecialchars($game['image']); ?>" alt="<?php echo htmlspecialchars($game['name']); ?>">
-                        <h2><?php echo htmlspecialchars($game['name']); ?></h2>
+                        <img src="<?php echo htmlspecialchars($game['image_path']); ?>" alt="<?php echo htmlspecialchars($game['Game_Title']); ?>">
+                        <h2><?php echo htmlspecialchars($game['Game_Title']); ?></h2>
                         <div class="price"><?php echo htmlspecialchars($game['price']); ?> credits</div>
-                        <button class="remove-btn" data-game-id="<?php echo htmlspecialchars($game['id']); ?>">Remove</button>
+                       <button class="remove-btn" data-game-id="<?php echo htmlspecialchars($game['ID']); ?>"><a onclick="<?php session_unset();?>"href="cart_page.php">Remove</a></button>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -242,7 +242,7 @@ sqlsrv_close($conn);
         <section class="checkout">
             <?php if (!empty($cart_items)): ?>
                 <div class="total">Total: <?php echo $total_cost; ?> credits</div>
-                <form action="checkout.php" method="POST">
+                <form action="index.php" method="POST">
                     <input type="hidden" name="total_cost" value="<?php echo $total_cost; ?>">
                     <button type="submit" class="checkout-btn">CHECKOUT</button>
                 </form>
