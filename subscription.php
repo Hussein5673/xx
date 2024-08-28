@@ -57,7 +57,7 @@ if (isset($_GET['tier'])) {
         die(print_r(sqlsrv_errors(), true));
     } else {
         // Update the user table with the subscription ID
-        $updateSql = "UPDATE user_table SET SubID = ? WHERE UserName = ?";
+        $updateSql = "UPDATE [user] SET SubID = ? WHERE UserName = ?";
         $updateParams = array($subID, $username);
         $updateStmt = sqlsrv_query($conn, $updateSql, $updateParams);
 
