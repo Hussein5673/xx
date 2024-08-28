@@ -3098,7 +3098,7 @@
                   ">
                 Home Page
                 </div>
-              </a></div><a href="homepage.php" style="text-decoration: none">
+              </a></div><a href="index.php" style="text-decoration: none">
               </a><div style="
                   padding: 12px;
                   background: black;
@@ -3107,7 +3107,7 @@
                   align-items: flex-start;
                   gap: 10px;
                   display: flex;
-                "><a href="homepage.php" style="text-decoration: none">
+                "><a href="index.php" style="text-decoration: none">
               </a><a href="subscription.html" style="text-decoration: none">
                 <div style="
                     color: #91969b;
@@ -3142,7 +3142,7 @@
     </div>
     <input type="text" class="SearchInput" placeholder="Search">
 </div>
-            <a href="homepage.html" style="text-decoration: none">
+            <a href="index.php" style="text-decoration: none">
               <img style="
                   width: 101px;
                   height: 91px;
@@ -3152,14 +3152,14 @@
                   border-radius: 0px;
                 " src="Catalog_images/store-icon 1.png">
             </a>
-            <div style="
+            <div class="profile frame" style="
                 width: 214px;
                 height: 65px;
                 padding-top: 7px;
                 padding-bottom: 4px;
                 padding-left: 25px;
                 padding-right: 12px;
-                left: 1150px;
+                left: 900px;
                 top: 23px;
                 position: absolute;
                 background: #484823;
