@@ -4,9 +4,9 @@ session_start(); // Start the session at the beginning
 
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     $username = $_SESSION['username'];
-    
+    $welcomeMessage = "Welcome " . htmlspecialchars($username);
 } else {
-    // Handle the case where the user is not logged in
+    $welcomeMessage = "Welcome to Game Vault";
 }
 
 ?>
@@ -31,7 +31,9 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     </div>
     <input type="text" class="SearchInput" placeholder="Search">
 </div>
-<div class="WelcomeToGameVaultFeelFreeToBrowseThroughOurLatestCollectionOfGames" style="width: 856px; height: 278px; left: 300px; top: 253px; position: absolute; color: white; font-size: 57px; font-family: Roboto; font-weight: 400; line-height: 64px; word-wrap: break-word">Welcome <?php echo $username?><br/><br/>Feel free to browse through our latest collection of games</div>
+<div class="WelcomeToGameVaultFeelFreeToBrowseThroughOurLatestCollectionOfGames" style="width: 856px; height: 278px; left: 300px; top: 253px; position: absolute; color: white; font-size: 57px; font-family: Roboto; font-weight: 400; line-height: 64px; word-wrap: break-word">
+    <?php echo $welcomeMessage; ?><br/><br/>Feel free to browse through our latest collection of games
+</div>
     <nav>
     <a href=""><div class="GameVault" style="width: 348px; height: 70px; left: 56px; top: 14px; position: absolute; text-align: center; color: white; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; word-wrap: break-word">Game Vault</div></a>
   </div>  
@@ -56,6 +58,9 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     </div>
     <div class="Menu">
         <a href="GameInfoPage_Overwatch.html"><div class="MenuItem">Overwatch</div></a>
+    </div>
+    <div class="Menu">
+        <a href="Signout.php"><div class="MenuItem">Signout</div></a>
     </div>
 </div>
 
