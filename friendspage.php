@@ -181,7 +181,7 @@ sqlsrv_close($conn);
 <div class="FriendsPageMichel">
   
   <div class="GameVault">
-    Game Vault
+  <a href="index.php">Game Vault</a>
   </div>
   
   <div class="FriendsPage">
@@ -199,7 +199,9 @@ sqlsrv_close($conn);
   <form method="POST" action="">
     <div class="Searchbox">
         <input type="text" name="searchTerm" class="SearchInput" placeholder="Search">
-        <button type="submit">Search</button>
+        <div class="Icon">
+            <img src="Icons/Icon.png" alt="Icon Image">
+        </div>
     </div>
   </form>
 
