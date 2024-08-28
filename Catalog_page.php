@@ -257,8 +257,8 @@
               top: 0px;
               position: absolute;
             " src="Catalog_images/unsplash_SIhcZYEwMB0.png">
-          <div style="
-              width: 1344px;
+          <div class="content"  style="
+              width: 100%;
               height: 1920px;
               left: 28px;
               top: 368px;
@@ -3012,7 +3012,7 @@
                 gap: 8px;
                 display: inline-flex;
               ">
-              <div style="
+              <div class="friendspage button" style="
                   padding: 12px;
                   background: black;
                   border-radius: 8px;
@@ -3021,7 +3021,7 @@
                   gap: 10px;
                   display: flex;
                 ">
-                <a href="friendspage.html" style="text-decoration: none">
+                <a href="friendspage.php" style="text-decoration: none">
                   <div style="
                       color: #91969b;
                       font-size: 16px;
@@ -3034,7 +3034,7 @@
                   </div>
                 </a>
               </div>
-              <div style="
+              <div class="cart page button"  style="
                   padding: 12px;
                   background: black;
                   border-radius: 8px;
@@ -3043,7 +3043,7 @@
                   gap: 10px;
                   display: flex;
                 ">
-                <a href="cart_page.html" style="text-decoration: none">
+                <a href="cart_page.php" style="text-decoration: none">
                   <div style="
                       color: #91969b;
                       font-size: 16px;
@@ -3065,7 +3065,7 @@
                   gap: 10px;
                   display: flex;
                 ">
-                <a href="profile_page.php" style="text-decoration: none">
+                <a class="profile button"href="profile_page.php" style="text-decoration: none">
                   <div style="
                       color: #91969b;
                       font-size: 16px;
@@ -3087,7 +3087,7 @@
                   gap: 10px;
                   display: flex;
                 ">
-              <a href="homepage.php" style="text-decoration: none">
+              <a class="home page button"href="index.php" style="text-decoration: none">
                 <div style="
                     color: #91969b;
                     font-size: 16px;
