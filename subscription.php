@@ -2,7 +2,6 @@
 //started the session
 session_start();
 
-
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     $username = $_SESSION['username'];
     // You can now use $username in your script
@@ -40,39 +39,45 @@ if (isset($_GET['tier'])) {
     }
 
     // Generate a unique SubID (or let the database handle it if it's auto-incremented)
-    $subID = uniqid();
+    $subID = rand(1000, 9999); // Generate a random integer SubID
 
     // Set StartingDate to the current date and EndDate to one year later
     $startingDate = date('Y-m-d');
     $endDate = date('Y-m-d', strtotime('+1 year'));
 
-// Generate a random integer for SubID
-$subID = rand(1000, 9999); // Generate a random integer SubID
+    // Insert the subscription details into the Subscription_table
+    $sql = "INSERT INTO Subscription_table (SubID, SubType, SubPrice, StartingDate, EndDate) VALUES (?, ?, ?, ?, ?)";
 
-// Include SubID in the insert statement
-$sql = "INSERT INTO Subscription_table (SubID, SubType, SubPrice, StartingDate, EndDate) VALUES (?, ?, ?, ?, ?)";
+    // Prepare the statement
+    $params = array($subID, $subType, $subPrice, $startingDate, $endDate);
+    $stmt = sqlsrv_query($conn, $sql, $params);
 
-// Prepare the statement
-$params = array($subID, $subType, $subPrice, $startingDate, $endDate);
-$stmt = sqlsrv_query($conn, $sql, $params);
+    // Check if the subscription was added successfully
+    if ($stmt === false) {
+        die(print_r(sqlsrv_errors(), true));
+    } else {
+        // Update the user table with the subscription ID
+        $updateSql = "UPDATE user_table SET SubID = ? WHERE UserName = ?";
+        $updateParams = array($subID, $username);
+        $updateStmt = sqlsrv_query($conn, $updateSql, $updateParams);
 
-
-  // Execute the query and check if it was successful
-  if ($stmt === false) {
-    die(print_r(sqlsrv_errors(), true));
-} else {
-    // Show an alert and redirect using JavaScript
-    echo "<script type='text/javascript'>
-            alert('You subscribed successfully!');
-            window.location.href = 'index.php';
-          </script>";
-    exit;
-}
+        if ($updateStmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        } else {
+            // Show an alert and redirect using JavaScript
+            echo "<script type='text/javascript'>
+                    alert('You subscribed successfully!');
+                    window.location.href = 'index.php';
+                  </script>";
+            exit;
+        }
+    }
 }
 
 // Close the connection
 sqlsrv_close($conn);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
