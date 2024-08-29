@@ -673,7 +673,7 @@
                   gap: 10px;
                   display: flex;
                 "><a href="index.php" style="text-decoration: none">
-              </a><a href="subscription.html" style="text-decoration: none">
+              </a><a href="subscription.php" style="text-decoration: none">
                 <div style="
                     color: #91969b;
                     font-size: 16px;
