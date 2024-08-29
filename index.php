@@ -1,5 +1,4 @@
 <?php
-
 session_start(); // Start the session at the beginning
 
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
