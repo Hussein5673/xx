@@ -5,6 +5,8 @@ session_start();
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     $username = $_SESSION['username'];
     // You can now use $username in your script
+}else{
+  header("Location: Sign_in_html.php");
 }
 
 // Include the database connection details
