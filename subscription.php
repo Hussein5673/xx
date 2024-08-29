@@ -94,26 +94,30 @@ sqlsrv_close($conn);
 </head>
 <body>
 <div class="NoorSSubscriptionPage">
-  <div class="HeaderStore" style="width: 1716px; height: 91px; left: 129px; top: 107px; position: absolute; background: white; border-radius: 20px">
-    <div class="Frame7" style="width: 426px; left: 706px; top: 25px; position: absolute; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-      <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Latest</div>
-      </div>
-      <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Collections</div>
-      </div>
-      <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Deals</div>
-      </div>
-      <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Subscriptions</div>
-      </div>
-      <div class="Menu" style="padding: 12px; background: white; border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-        <div class="Menu" style="color: black; font-size: 16px; font-family: Abel; font-weight: 400; line-height: 16px; word-wrap: break-word">Browse</div>
-      </div>
-    </div>
-    <div class="GameVault" style="width: 360px; height: 70px; left: 30px; top: 12px; position: absolute; text-align: center; color: black; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; word-wrap: break-word">Game Vault</div>
-  </div>
+<div class="HeaderStore" style="width: 1716px; height: 91px; left: 129px; top: 107px; position: absolute; background: white; border-radius: 20px; display: flex; align-items: center; padding-left: 30px; z-index: 10;">
+
+<!-- Game Vault Link -->
+<a href="index.php" style="text-decoration: none; color: black; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; margin-right: 50px; position: relative; z-index: 20;">
+  Game Vault
+</a>
+
+<!-- Friends Link -->
+<a href="friendspage.php" style="text-decoration: none; color: #91969b; font-size: 16px; font-family: Actor; font-weight: 400; line-height: 16px; margin-right: 30px; position: relative; z-index: 20;">
+  Friends
+</a>
+
+<!-- View Cart Link -->
+<a href="cart_page.php" style="text-decoration: none; color: #91969b; font-size: 16px; font-family: Actor; font-weight: 400; line-height: 16px; margin-right: 30px; position: relative; z-index: 20;">
+  View Cart
+</a>
+
+<!-- My Profile Link -->
+<a href="profile_page.php" style="text-decoration: none; color: #91969b; font-size: 16px; font-family: Actor; font-weight: 400; line-height: 16px; position: relative; z-index: 20;">
+  My Profile
+</a>
+
+</div>
+
   <h1 style="color: white;left:400px ;top:250px ;position: absolute;">Choose the tier of Subscription</h1>
   <div class="Subscriptions" style="width: 1091px; height: 382px; position: relative">
     <div class="Subscriptions" style="width: 1091px; height: 382px; left: 474px; top: 333px; position: absolute">
