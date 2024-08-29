@@ -152,7 +152,7 @@ sqlsrv_close($conn);
               if (!in_array($row["UserName"], $friendsList))
                 echo "<form method='POST'><button name='addFriend' value={$row['UserName']}>Add Friend</button></form>";
               else 
-                echo "Friend Already added";
+                echo "<form method='POST'><button name='removeFriend' value={$row['UserName']}>Remove Friend</button></form>";
               echo "</div>";
           } else {
               echo "<div style='color: black; font-family: Abel; font-size: 2vw;'>No information found for '$friendName'.</div>";
@@ -176,7 +176,23 @@ sqlsrv_close($conn);
                     window.location.href = 'friendspage.php';
                   </script>";
       }
-    }   
+    }
+    
+    if (isset($_POST['removeFriend'])) {
+      $friendToRemove = $_POST['removeFriend'];
+      $sql = 'DELETE FROM [friends] WHERE Id=? AND friend_Id=?';
+      $params = array($_SESSION['username'], $friendToRemove);
+      $stmt = sqlsrv_query($conn, $sql, $params);
+
+      if ($stmt == false) {
+        die(print_r(sqlsrv_errors(), true));
+      } else {
+        echo "<script type='text/javascript'>
+                    alert('{$friendToRemove} Removed');
+                    window.location.href = 'friendspage.php';
+                  </script>";
+      }
+    }
     ?>
   </div>
 </div>
