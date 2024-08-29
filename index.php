@@ -39,9 +39,11 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         <div class="Menu">
             <a href="Catalog_page.php"><div class="MenuItem">Catalogue</div></a>
         </div>
-        <div class="Menu">
-            <a href="Sign_in_html.php"><div class="MenuItem">Signin</div></a>
-        </div>
+        <?php if (!isset($_SESSION['logged_in'])): ?>
+            <div class="Menu">
+                <a href="Sign_in_html.php"><div class="MenuItem">Signin</div></a>
+            </div>
+        <?php endif; ?>
         <div class="Menu">
             <a href="friendspage.php"><div class="MenuItem">Friends</div></a>
         </div>
@@ -57,9 +59,11 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         <div class="Menu">
             <a href="GameInfoPage_Overwatch.html"><div class="MenuItem">Overwatch</div></a>
         </div>
-        <div class="Menu">
-            <a href="Signout.php"><div class="MenuItem">Signout</div></a>
-        </div>
+        <?php if($_SESSION["logged_in"]): ?>
+            <div class="Menu">
+                <a href="Signout.php"><div class="MenuItem">Signout</div></a>
+            </div>
+        <?php endif; ?>
     </div>
     </nav>
 
