@@ -213,3 +213,19 @@ body, html {
     line-height: 28px;
     word-wrap: break-word;
 }
+
+
+/*    Catalog page     */
+
+    .frame-cat {
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 7px;
+        display: inline-flex;
+    }
+
+    .frame-cat img {
+        width: 100px; /* Set desired width */
+        height: 500px; /* Set desired height */
+        object-fit: cover; /* Ensure images cover the assigned area */
+    }
