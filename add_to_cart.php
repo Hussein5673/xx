@@ -10,8 +10,8 @@ if (isset($_POST['game_name'])) {
         $_SESSION['cart'] = [];
     }
 
-    // Add the game name to the cart
-    $_SESSION['cart'][] = $game_name;
+    // Replace the game in the cart
+    $_SESSION['cart'] = [$game_name];
 
     // Redirect to the cart page
     header("Location: cart_page.php");
