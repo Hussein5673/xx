@@ -145,3 +145,71 @@ body, html {
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
   }
+
+  /*    Profile page     */
+  
+  .LindaSProfilePage{
+    width: 100%;
+    height: 2500px;
+    position: relative;
+    background-image: url('picturespfp/unsplash_SIhcZYEwMB0.png'); /* Path to your image */
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */ 
+  }
+  .profile_page_box {
+    width: 1000px;
+    height: 600px;
+    left: 400px;
+    top: 200px;
+    position: absolute;
+    border-radius: 10px;
+    background-color: #08051E;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px; /* Added padding to create space inside the box */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Added a subtle shadow */
+    overflow: hidden; /* Prevents overflow of content */
+    overflow-y: auto; /* Enables vertical scrolling */
+}
+
+.User-item {
+    position: relative;
+    color: white;
+    font-size: 48px;
+    font-family: Pavanam, sans-serif;
+    font-weight: 400;
+    line-height: 56px;
+    word-wrap: break-word;
+    padding: 10px 20px; /* Added padding for better spacing */
+    margin-bottom: 20px; /* Added margin to separate items */
+    text-align: center; /* Center the text horizontally */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Subtle underline to distinguish items */
+    letter-spacing: 1.5px; /* Increased letter spacing for better readability */
+}
+
+.User-item:last-child {
+    border-bottom: none; /* Removes border from the last item */
+}
+
+
+  .Menu_profile_page .MenuItem {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 10px;
+    padding-bottom: 16px;
+    position: relative;
+    background: #08051E;
+    border-radius: 12px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 28px;
+    font-family: Pavanam, sans-serif;
+    font-weight: 400;
+    line-height: 28px;
+    word-wrap: break-word;
+}
