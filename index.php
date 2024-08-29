@@ -13,16 +13,15 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="HomePage">
-
   <div class="Searchbox">
     <div class="Search">
         <div class="Icon">
@@ -30,7 +29,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         </div>
     </div>
     <input type="text" class="SearchInput" placeholder="Search">
-</div>
+    </div>
     <div class="WelcomeToGameVaultFeelFreeToBrowseThroughOurLatestCollectionOfGames" style="width: 856px; height: 278px; left: 300px; top: 253px; position: absolute; color: white; font-size: 57px; font-family: Roboto; font-weight: 400; line-height: 64px; word-wrap: break-word">
         <?php echo $welcomeMessage; ?><br/><br/>Feel free to browse through our latest collection of games
     </div>
@@ -68,4 +67,3 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
 </body>
 </html>
-<!--Commit test-->
