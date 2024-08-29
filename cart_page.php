@@ -78,7 +78,8 @@ sqlsrv_close($conn);
                         <img src="<?php echo htmlspecialchars($game['image_path']); ?>" alt="<?php echo htmlspecialchars($game['Game_Title']); ?>">
                         <h2><?php echo htmlspecialchars($game['Game_Title']); ?></h2>
                         <div class="price"><?php echo htmlspecialchars($game['price']); ?> credits</div>
-                       <button class="remove-btn" data-game-id="<?php echo htmlspecialchars($game['ID']); ?>"><a onclick="<?php session_unset();?>"href="cart_page.php">Remove</a></button>
+                        <button class="remove-btn"><a href="remove_from_cart.php?game_name=<?php echo htmlspecialchars($game['Game_Title']); ?>">Remove</a></button>
+
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
