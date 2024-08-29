@@ -78,7 +78,10 @@ sqlsrv_close($conn);
                         <img src="<?php echo htmlspecialchars($game['image_path']); ?>" alt="<?php echo htmlspecialchars($game['Game_Title']); ?>">
                         <h2><?php echo htmlspecialchars($game['Game_Title']); ?></h2>
                         <div class="price"><?php echo htmlspecialchars($game['price']); ?> credits</div>
-                        <button class="remove-btn"><a href="remove_from_cart.php?game_name=<?php echo htmlspecialchars($game['Game_Title']); ?>">Remove</a></button>
+                        <form action="remove_from_cart.php" method="GET">
+                            <input type="hidden" name="game_name" value="<?php echo htmlspecialchars($game['Game_Title']); ?>">
+                            <button type="submit" class="remove-btn">Remove</button>
+                        </form>
 
                     </div>
                 <?php endforeach; ?>
@@ -88,7 +91,7 @@ sqlsrv_close($conn);
         </section>
         
         <section class="checkout">
-            <?php if (!empty($cart_items)): ?>
+            <?php if (!empty($cart_items)) : ?>
                 <div class="total">Total: <?php echo $total_cost; ?> credits</div>
                 <form action="index.php" method="POST">
                     <input type="hidden" name="total_cost" value="<?php echo $total_cost; ?>">
