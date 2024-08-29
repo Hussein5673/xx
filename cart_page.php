@@ -78,7 +78,11 @@ sqlsrv_close($conn);
                         <img src="<?php echo htmlspecialchars($game['image_path']); ?>" alt="<?php echo htmlspecialchars($game['Game_Title']); ?>">
                         <h2><?php echo htmlspecialchars($game['Game_Title']); ?></h2>
                         <div class="price"><?php echo htmlspecialchars($game['price']); ?> credits</div>
-                       <button class="remove-btn" data-game-id="<?php echo htmlspecialchars($game['ID']); ?>"><a onclick="<?php session_unset();?>"href="cart_page.php">Remove</a></button>
+                        <form action="remove_from_cart.php" method="GET">
+                            <input type="hidden" name="game_name" value="<?php echo htmlspecialchars($game['Game_Title']); ?>">
+                            <button type="submit" class="remove-btn">Remove</button>
+                        </form>
+
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -87,7 +91,7 @@ sqlsrv_close($conn);
         </section>
         
         <section class="checkout">
-            <?php if (!empty($cart_items)): ?>
+            <?php if (!empty($cart_items)) : ?>
                 <div class="total">Total: <?php echo $total_cost; ?> credits</div>
                 <form action="index.php" method="POST">
                     <input type="hidden" name="total_cost" value="<?php echo $total_cost; ?>">
@@ -103,9 +107,9 @@ sqlsrv_close($conn);
         <div class="nav-item"><a href="index.php">Home</a></div>
         <div class="nav-item"><a href="Catalog_page.php">Catalogue</a></div>
         <div class="nav-item"><a href="Sign_in_html.php">Signin</a></div>
-        <div class="nav-item"><a href="SignUp.html">Signup</a></div>
-        <div class="nav-item"><a href="friendspage.html">Friends</a></div>
-        <div class="nav-item"><a href="subscription.html">Subscriptions</a></div>
+        <div class="nav-item"><a href="SignUp.php">Signup</a></div>
+        <div class="nav-item"><a href="friendspage.php">Friends</a></div>
+        <div class="nav-item"><a href="subscription.php">Subscriptions</a></div>
     </nav>
 </body>
 </html>

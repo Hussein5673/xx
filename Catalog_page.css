@@ -41,8 +41,7 @@
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
-</style>
-<style type="text/css">
+
 /* Copyright 2014-present Evernote Corporation. All rights reserved. */
 .skitchToastBoxContainer {
   position: absolute;
@@ -92,14 +91,7 @@
 .skitchVisible {
   /* Don't remove this class it's a hack used by the Evernote Clipper */
 }
-</style>
-<style type="text/css">
-/* Copyright 2014-present Evernote Corporation. All rights reserved. */
 
-
-</style>
-<style type="text/css">
-/* Copyright 2019-present Evernote Corporation. All rights reserved. */
 
 #en-markup-disabled {
   position: fixed;

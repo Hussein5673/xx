@@ -87,7 +87,7 @@ sqlsrv_close($conn);
     <ul>
       <?php if (empty($friendsList)) : ?>
        <li>
-        No Friends :(
+        No Friends :/
        </li>
       <?php endif; ?>
       <?php foreach ($friendsList as $friend): ?>
@@ -112,26 +112,6 @@ sqlsrv_close($conn);
           die(print_r(sqlsrv_errors(), true));
       }
 
-        // Omran's previous code
-        // if (isset($_POST['searchTerm'])) {
-        //     $searchTerm = $_POST['searchTerm'];
-        //     $filteredFriends = array_filter($friendsList, function($friend) use ($searchTerm) {
-        //         return stripos($friend, $searchTerm) !== false;
-        //     });
-
-        //     if (count($filteredFriends) > 0) {
-        //         echo "<div style='color: black; font-family: Abel; font-size: 1.5vw;'>Search Results:</div>";
-        //         foreach ($filteredFriends as $friend) {
-        //             echo "<form method='POST' action=''>
-        //                     <input type='hidden' name='friendName' value='" . htmlspecialchars($friend) . "'>
-        //                     <button type='submit' style='background:none; border:none; color:black; font-size:2vw; font-family:Abel; cursor:pointer; margin-bottom:10px;'>" . htmlspecialchars($friend) . "</button>
-        //                   </form>";
-        //         }
-        //     } else {
-        //         echo "<div style='color: black; font-family: Abel; font-size: 2vw;'>No friends found with the name '$searchTerm'.</div>";
-        //     }
-        // }
-      
       // When the user attempts to find a specfic user to friend the search query is sent to the database
       if (isset($_POST['searchTerm'])) {
         $searchTerm = $_POST['searchTerm'];
@@ -153,7 +133,7 @@ sqlsrv_close($conn);
           echo "<div style='color: black; font-family: Abel; font-size: 2vw;'>No friends found with the name '$searchTerm'.</div>";
         }
       }
-
+    }
       // Friends Information
       if (isset($_POST['friendName'])) {
           $friendName = $_POST['friendName'];
@@ -169,20 +149,39 @@ sqlsrv_close($conn);
               echo "Name: " . htmlspecialchars($row["Name"]) . "<br>";
               echo "Email: " . htmlspecialchars($row["Email"]) . "<br>";
               echo "Username: " . htmlspecialchars($row["UserName"]) . "<br>";
+              if (!in_array($row["UserName"], $friendsList))
+                echo "<form method='POST'><button name='addFriend' value={$row['UserName']}>Add Friend</button></form>";
+              else 
+                echo "Friend Already added";
               echo "</div>";
           } else {
               echo "<div style='color: black; font-family: Abel; font-size: 2vw;'>No information found for '$friendName'.</div>";
-          }    
-      }
-
+          }
+      
       sqlsrv_close($conn);
     }
+
+
+    if (isset($_POST['addFriend'])) {
+      $friendToAdd = $_POST['addFriend'];
+      $sql = "INSERT INTO [friends] (Id, friend_Id, pending) VALUES (?, ?, ?)";
+      $params = array($_SESSION['username'], $friendToAdd, 0);
+      $stmt = sqlsrv_query($conn, $sql, $params);
+
+      if($stmt == false) {
+        die(print_r(sqlsrv_errors(), true));
+      } else {
+        echo "<script type='text/javascript'>
+                    alert('Friend Added');
+                    window.location.href = 'friendspage.php';
+                  </script>";
+      }
+    }   
     ?>
   </div>
 </div>
 </div> 
   
-
 </div>
 </body>
 </html>
