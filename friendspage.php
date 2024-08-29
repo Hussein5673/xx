@@ -66,20 +66,18 @@ sqlsrv_close($conn);
     <div class="OnlineStatus"><span class="dot"></span> Online</div>
   </div>
 
-  <div class="FriendsPage">
-    FRIENDS PAGE
-  </div>
 
-  <div class="Searchbox">
   <form method="POST" action="friendspage.php">
-    <div class="Icon">
+  <div class="Searchbox_Friendspage">
+  
+    <div class="Icon_Friends">
         <img src="Icons/Icon.png" alt="Icon Image">
     </div>
-    <input type="text" name="searchTerm" class="SearchInput" placeholder="Search">
+    <input type="text" name="searchTerm" class="SearchInput_Friends" placeholder="Search">
+    </div>
   </form>
+  <br>
 </div>
-</div> 
-  
 <div class="middleScreen">
   <!-- Friends List -->
   <div class="Frame379">
@@ -182,6 +180,9 @@ sqlsrv_close($conn);
     ?>
   </div>
 </div>
+</div> 
+  
+
 </div>
 </body>
 </html>
