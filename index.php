@@ -58,7 +58,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         <div class="Menu">
             <a href="GameInfoPage_Overwatch.html"><div class="MenuItem">Overwatch</div></a>
         </div>
-        <?php if(isset($_SESSION["logged_in"])): ?> 
+        <?php if(isset($_SESSION["logged_in"])): ?>
             <div class="Menu">
                 <a href="Signout.php"><div class="MenuItem">Signout</div></a>
             </div>

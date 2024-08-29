@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 session_start();
 
 include 'username_database_password_server.php';
@@ -23,7 +21,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 $username = $_SESSION['username'];
 
 // Query to get user details
-$sql = "SELECT UserName, Email, DateOfBirth, Friends, reg_date, SubID FROM [user] WHERE UserName = ?";
+$sql = "SELECT UserName, Email, DateOfBirth, Friends, reg_date, SubID, AchivementID FROM [user] WHERE UserName = ?";
 $params = array($username);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
@@ -49,6 +47,20 @@ if ($stmt_sub === false) {
 
 $subscription = sqlsrv_fetch_array($stmt_sub, SQLSRV_FETCH_ASSOC);
 
+
+
+// Get Achievement details
+$achievementID = $user['AchivementID'];
+$sql_trophy = "SELECT level, trophies, cups, medals, prizes, Prof_Id FROM [trophy_table] WHERE Prof_Id = ?";
+$params_trophy = array($achievementID);
+$stmt_trophy = sqlsrv_query($conn, $sql_trophy, $params_trophy);
+
+if ($stmt_trophy === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+
+$trophy = sqlsrv_fetch_array($stmt_trophy, SQLSRV_FETCH_ASSOC);
+
 sqlsrv_close($conn);
 
 // Function to format date
@@ -60,6 +72,7 @@ function formatDate($date) {
 }
 ?>
 <!-----------------------------------Start of the html code----------------------------------------------->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,8 +116,8 @@ function formatDate($date) {
  </div>
   
   <div class="Frame113" style="width: 200px; height: 96px; left: 1400px; top: 70px; position: absolute; background: #07041D">
-    <div class="Level" style="width: 200px; height: 38px; left: 0px; top: 29px; position: absolute; color: white; font-size: 40px; font-family: Pavanam; font-weight: 400; line-height: 16px; word-wrap: break-word">Level . </div>
-    <div style="width: 103px; height: 97px; left: 100px; top: 48px; position: absolute; color: white; font-size: 100px; font-family: Pavanam; font-weight: 400; line-height: 16px; word-wrap: break-word">0</div>
+    <div class="Level" style="width: 200px; height: 38px; left: 0px; top: 29px; position: absolute; color: white; font-size: 40px; font-family: Pavanam; font-weight: 400; line-height: 16px; word-wrap: break-word"><p>Level: <?php echo htmlspecialchars($trophy['level']); ?></p> </div>
+    
   </div>
   
   <div class="Group2" style="width: 309px; height: 433px; left: 1438px; top: 432px; position: absolute">
@@ -119,10 +132,10 @@ function formatDate($date) {
     <div class="Line1" style="width: 143.11px; height: 0px; left: 92.97px; top: 98.87px; position: absolute; border: 1px #70BDBD solid"></div>
     <div class="Line3" style="width: 143.11px; height: 0px; left: 92.97px; top: 258.15px; position: absolute; border: 1px #70BDBD solid"></div>
     <div class="Line4" style="width: 143.11px; height: 0px; left: 88.42px; top: 340.54px; position: absolute; border: 1px #70BDBD solid"></div>
-    <div style="width: 68.36px; height: 54.01px; left: 240.64px; top: 98.87px; position: absolute; color: white; font-size: 40px; font-family: Pavanam; font-weight: 400; line-height: 16px; word-wrap: break-word">0</div>
-    <div style="width: 68.36px; height: 54.01px; left: 236.08px; top: 180.34px; position: absolute; color: white; font-size: 40px; font-family: Pavanam; font-weight: 400; line-height: 16px; word-wrap: break-word">0</div>
-    <div style="width: 68.36px; height: 54.01px; left: 236.08px; top: 258.15px; position: absolute; color: white; font-size: 40px; font-family: Pavanam; font-weight: 400; line-height: 16px; word-wrap: break-word">0</div>
-    <div style="width: 68.36px; height: 54.01px; left: 236.08px; top: 339.63px; position: absolute; color: white; font-size: 40px; font-family: Pavanam; font-weight: 400; line-height: 16px; word-wrap: break-word">0</div>
+    <div style="width: 68.36px; height: 54.01px; left: 240.64px; top: 98.87px; position: absolute; color: white; font-size: 40px; font-family: Pavanam; font-weight: 400; line-height: 16px; word-wrap: break-word"><?php echo htmlspecialchars($trophy['cups']); ?></div>
+    <div style="width: 68.36px; height: 54.01px; left: 236.08px; top: 180.34px; position: absolute; color: white; font-size: 40px; font-family: Pavanam; font-weight: 400; line-height: 16px; word-wrap: break-word"><?php echo htmlspecialchars($trophy['trophies']); ?></div>
+    <div style="width: 68.36px; height: 54.01px; left: 236.08px; top: 258.15px; position: absolute; color: white; font-size: 40px; font-family: Pavanam; font-weight: 400; line-height: 16px; word-wrap: break-word"><?php echo htmlspecialchars($trophy['medals']); ?></div>
+    <div style="width: 68.36px; height: 54.01px; left: 236.08px; top: 339.63px; position: absolute; color: white; font-size: 40px; font-family: Pavanam; font-weight: 400; line-height: 16px; word-wrap: break-word"><?php echo htmlspecialchars($trophy['prizes']); ?></div>
   </div>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
