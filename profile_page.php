@@ -138,9 +138,6 @@ function formatDate($date) {
       <a href="Catalog_page.php"><div class="MenuItem">Catalogue</div></a>
     </div>
     <div class="Menu_profile_page">
-      <a href="Sign_in_html.php"><div class="MenuItem">Signin</div></a>
-    </div>
-    <div class="Menu_profile_page">
       <a href="friendspage.php"><div class="MenuItem">Friends</div></a>
     </div>
     <div class="Menu_profile_page">

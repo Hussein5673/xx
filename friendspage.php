@@ -169,15 +169,20 @@ sqlsrv_close($conn);
               echo "Name: " . htmlspecialchars($row["Name"]) . "<br>";
               echo "Email: " . htmlspecialchars($row["Email"]) . "<br>";
               echo "Username: " . htmlspecialchars($row["UserName"]) . "<br>";
+              echo "<input type='submit' name='addFriend' value='Add Friend'>";
               echo "</div>";
           } else {
               echo "<div style='color: black; font-family: Abel; font-size: 2vw;'>No information found for '$friendName'.</div>";
-          }    
+          }
+          
+          if ($_POST[''])
       }
 
       sqlsrv_close($conn);
     }
     ?>
+
+  
   </div>
 </div>
 </div> 
