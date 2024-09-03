@@ -32,7 +32,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     </div>
     <div class="WelcomeToGameVaultFeelFreeToBrowseThroughOurLatestCollectionOfGames" style="width: 856px; height: 278px; left: 300px; top: 253px; position: absolute; color: white; font-size: 20px; font-family: 'Abel'; font-weight: 400; line-height: 64px; word-wrap: break-word">
         <?php echo $welcomeMessage; ?><br/><br/>Feel free to browse through our latest collection of games
-        <!-- Put your answers below here like so.. -->
+        <?php echo "<br> Azure Artifacts feeds are organizational constructs that allow you to store, manage, and share your packages while controlling access."; ?>
         <?php echo "<br> Hello Everyone"; ?>
         <?php echo "<br> Answers"; ?>
     </div>
