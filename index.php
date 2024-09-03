@@ -5,7 +5,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     $username = $_SESSION['username'];
     $welcomeMessage = "Welcome " . htmlspecialchars($username);
 } else {
-    $welcomeMessage = "Welcome to Game Vault";
+    $welcomeMessage = "Welcome to Game Vault - Our Website is a mess :)";
 }
 
 ?>
@@ -30,8 +30,13 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     </div>
     <input type="text" class="SearchInput" placeholder="Search">
     </div>
-    <div class="WelcomeToGameVaultFeelFreeToBrowseThroughOurLatestCollectionOfGames" style="width: 856px; height: 278px; left: 300px; top: 253px; position: absolute; color: white; font-size: 57px; font-family: 'Abel'; font-weight: 400; line-height: 64px; word-wrap: break-word">
+    <div class="WelcomeToGameVaultFeelFreeToBrowseThroughOurLatestCollectionOfGames" style="width: 856px; height: 278px; left: 300px; top: 253px; position: absolute; color: white; font-size: 20px; font-family: 'Abel'; font-weight: 400; line-height: 64px; word-wrap: break-word">
         <?php echo $welcomeMessage; ?><br/><br/>Feel free to browse through our latest collection of games
+        <?php echo "<br> Azure Artifacts feeds are organizational constructs that allow you to store, manage, and share your packages while controlling access."; ?>
+        <?php echo "<br> Hello Everyone"; ?>
+        <?php echo "<br> Answers"; ?>
+        <?php echo "<br> Hello thats me khalid"; ?>
+        <?php echo "<br>  organizational constructs that allow you to store, manage, and share your packages while controlling access"; ?>
     </div>
         <nav>
         <a href=""><div class="GameVault" style="width: 348px; height: 70px; left: 56px; top: 14px; position: absolute; text-align: center; color: white; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; word-wrap: break-word">Game Vault</div></a> 
