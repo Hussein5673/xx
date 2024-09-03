@@ -5,7 +5,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     $username = $_SESSION['username'];
     $welcomeMessage = "Welcome " . htmlspecialchars($username);
 } else {
-    $welcomeMessage = "Welcome to Game Vault";
+    $welcomeMessage = "Welcome to Game Vault - Our Website is a mess :)";
 }
 
 ?>
