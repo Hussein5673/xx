@@ -37,6 +37,8 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         <?php echo "<br> Answers"; ?>
         <?php echo "<br> Hello thats me khalid"; ?>
         <?php echo "<br>  organizational constructs that allow you to store, manage, and share your packages while controlling access"; ?>
+        <?php echo "<br> artifact is any file, binary, or executable that is generated as a result of the software build process. "; ?>
+    
     </div>
         <nav>
         <a href=""><div class="GameVault" style="width: 348px; height: 70px; left: 56px; top: 14px; position: absolute; text-align: center; color: white; font-size: 57px; font-family: Righteous; font-weight: 400; line-height: 64px; word-wrap: break-word">Game Vault</div></a> 
